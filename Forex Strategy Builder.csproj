@@ -128,7 +128,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Indicators\N Bars Exit.cs" />
-    <Compile Include="Tools\Registrar.cs" />
     <Compile Include="Tools\About Screen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,9 +344,6 @@
     </Compile>
     <Compile Include="Backtester\Order.cs" />
     <Compile Include="Backtester\Position.cs" />
-    <Compile Include="User interface\Micro Balance Chart.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="User interface\NUD.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -451,6 +447,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\chart_protection.png" />
+    <Content Include="Resources\config.xml" />
+    <Content Include="Resources\fsb-update.xml" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>

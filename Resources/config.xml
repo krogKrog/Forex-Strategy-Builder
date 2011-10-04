@@ -7,7 +7,7 @@
   <MAX_EXIT_FILTERS>2</MAX_EXIT_FILTERS>
   <SIGMA_MODE_MAIN_CHART>1</SIGMA_MODE_MAIN_CHART>
   <SIGMA_MODE_SEPARATED_CHART>5</SIGMA_MODE_SEPARATED_CHART>
-  <installed>True</installed>
+  <installed>False</installed>
   <showStartingTip>True</showStartingTip>
   <currentTipNumber>-1</currentTipNumber>
   <language>English</language>
@@ -19,14 +19,12 @@
   <tradeUntilMarginCall>True</tradeUntilMarginCall>
   <additionalStatistics>False</additionalStatistics>
   <useLogicalGroups>False</useLogicalGroups>
-  <dataDirectory>
-  </dataDirectory>
+  <dataDirectory></dataDirectory>
   <colorScheme>Light Blue</colorScheme>
   <rememberLastStrategy>True</rememberLastStrategy>
-  <lastStrategy>
-  </lastStrategy>
+  <lastStrategy></lastStrategy>
   <checkForUpdates>True</checkForUpdates>
-  <checkForNewBeta>True</checkForNewBeta>
+  <checkForNewBeta>False</checkForNewBeta>
   <checkData>True</checkData>
   <fillDataGaps>False</fillDataGaps>
   <cutBadData>False</cutBadData>
@@ -34,21 +32,18 @@
   <showCustomIndicators>False</showCustomIndicators>
   <playSounds>True</playSounds>
   <optimizerWriteReport>False</optimizerWriteReport>
-  <generatorOptions>
-  </generatorOptions>
-  <optimizerOptions>
-  </optimizerOptions>
+  <generatorOptions></generatorOptions>
+  <optimizerOptions></optimizerOptions>
   <columnSeparator>,</columnSeparator>
   <decimalSeparator>.</decimalSeparator>
   <useTickData>False</useTickData>
-  <jforexDataPath>
-  </jforexDataPath>
+  <jforexDataPath></jforexDataPath>
   <marketClosingHour>21</marketClosingHour>
   <marketOpeningHour>21</marketOpeningHour>
-  <bannedIndicators>
-  </bannedIndicators>
+  <bannedIndicators></bannedIndicators>
   <showPriceChartOnAccountChart>False</showPriceChartOnAccountChart>
   <analyzerHideFSB>True</analyzerHideFSB>
+  <sendUsageStats>True</sendUsageStats>
   <dataHorizon>
     <maxBars>20000</maxBars>
     <useStartDate>False</useStartDate>
@@ -82,6 +77,7 @@
     <indicators>True</indicators>
     <ambiguousMark>True</ambiguousMark>
     <trueCharts>False</trueCharts>
+    <protections>False</protections>
   </indicatorChart>
   <balanceChart>
     <zoom>8</zoom>
@@ -98,5 +94,6 @@
     <indicators>False</indicators>
     <ambiguousMark>True</ambiguousMark>
     <trueCharts>False</trueCharts>
+    <protections>False</protections>
   </balanceChart>
 </config>

@@ -426,7 +426,7 @@
     <alt>Быстрое сканирование</alt>
   </str>
   <str>
-    <main>Perform quick intrabar scanning.</main>
+    <main>Perform quick intrabar scan.</main>
     <alt>Быстрое сканирование внутри бара.</alt>
   </str>
   <str>
@@ -574,7 +574,7 @@
     <alt>Сканер</alt>
   </str>
   <str>
-    <main>Perform a deep intrabar scanning.</main>
+    <main>Perform a deep intrabar scan.</main>
     <alt>Выполнить сканирование внутри бара.</alt>
   </str>
   <str>
@@ -622,7 +622,7 @@
     <alt>Восстановить настройки</alt>
   </str>
   <str>
-    <main>Reset the program settings to their default values. You need to restart!</main>
+    <main>Reset the program settings to their default values. You will need to restart!</main>
     <alt>Восстановить настройки программы к их первоначальным значениям. Нужен перезапуск!</alt>
   </str>
   <str>
@@ -684,6 +684,10 @@
   <str>
     <main>Check for New Beta Versions</main>
     <alt>Проверять наличие новых бета-версий</alt>
+  </str>
+  <str>
+    <main>Send anonymous usage statistics</main>
+    <alt>Отправлять анонимную статистику использования</alt>
   </str>
   <str>
     <main>About</main>
@@ -1048,7 +1052,7 @@
     <alt>Дополнительная статистика</alt>
   </str>
   <str>
-    <main>Show long/short balance lines in the chart and more statistics in the overview.</main>
+    <main>Show long/short balance lines on the chart and more statistics in the overview.</main>
     <alt>Показать длинную/короткую балансную линию в графике и дополнительную статистику в обзор стратегии.</alt>
   </str>
   <str>
@@ -1322,7 +1326,7 @@
     <alt>Усреднение не допускается. Отменить все дополнительные ордера в том же направлении.</alt>
   </str>
   <str>
-    <main>Add to a wining position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</main>
+    <main>Add to a winning position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</main>
     <alt>Добавить к позиции выигрыша, но не к позиции убытка. Если позиция в убытке, отменить каждый дополнительный входящий ордер. Не превышать максимальное количество разрешенных лотов для открытия.</alt>
   </str>
   <str>
@@ -1380,6 +1384,10 @@
   <str>
     <main>pips profit.</main>
     <alt>пипсы прибыли.</alt>
+  </str>
+  <str>
+    <main>The position's Stop Loss will be set to Break Even price when the profit reaches</main>
+    <alt>Стоп лосс будет установлен на уровень безубыточности, когда прибыль достигает</alt>
   </str>
   <str>
     <main>Use the indicator value from the previous bar for all asterisk-marked indicators!</main>
@@ -1540,7 +1548,7 @@
   </str>
   <str>
     <main>Break Even</main>
-    <alt>Break Even</alt>
+    <alt>Безубыточность</alt>
   </str>
   <!-- Account Panel -->
   <str>
@@ -1908,7 +1916,7 @@
     <alt>Бумажной П/У</alt>
   </str>
   <str>
-    <main>Indicators chart</main>
+    <main>Indicators charts</main>
     <alt>Диаграмма индикаторов</alt>
   </str>
   <str>
@@ -1983,6 +1991,10 @@
     <main>Forming order price</main>
     <alt>Цену формирующий ордер</alt>
   </str>
+  <str>
+    <main>Break Even, Permanent SL, Permanent TP</main>
+    <alt>Break Even, Постоянный СЛ, Постоянный ТП</alt>
+  </str>
   <!-- Order's Comments -->
   <str>
     <main>Close due to a Margin Call</main>
@@ -2050,11 +2062,11 @@
   </str>
   <str>
     <main>Trailing Stop Limit to position</main>
-    <alt>Trailing Stop Limit к позиции</alt>
+    <alt>Скользящий Стоп Лимит к позиции</alt>
   </str>
   <str>
     <main>Trailing Stop Limit to order</main>
-    <alt>Trailing Stop Limit к ордеру</alt>
+    <alt>Скользящий Стоп Лимит к ордеру</alt>
   </str>
   <str>
     <main>Permanent S/L to position</main>
@@ -2071,6 +2083,14 @@
   <str>
     <main>Permanent T/P to order</main>
     <alt>Постоянный T/P к ордеру</alt>
+  </str>
+  <str>
+    <main>Break Even to position</main>
+    <alt>Break Even к позицию</alt>
+  </str>
+  <str>
+    <main>Break Even activation to position</main>
+    <alt>Break Even активация к позицию</alt>
   </str>
   <!-- Bar Explorer -->
   <str>
@@ -2278,7 +2298,7 @@
     <alt>Скольжение в</alt>
   </str>
   <str>
-    <main>percents</main>
+    <main>percent</main>
     <alt>проценты</alt>
   </str>
   <str>
@@ -2359,8 +2379,8 @@
     <alt>Публиковать стратегию на форуме программы.</alt>
   </str>
   <str>
-    <main>Open a new topic in the forum</main>
-    <alt>Открыть новую тему на форуме</alt>
+    <main>Open a new topic in the forum;</main>
+    <alt>Открыть новую тему на форуме;</alt>
   </str>
   <str>
     <main>Copy / Paste the following code;</main>
@@ -2429,7 +2449,7 @@
     <alt>Этикетка</alt>
   </str>
   <str>
-    <main>Probably the data is incomplete and the scanning may not be reliable!</main>
+    <main>The data is probably incomplete and the scanning may not be reliable!</main>
     <alt>Возможно, данные неполны и сканирование может быть ненадежным!</alt>
   </str>
   <str>
@@ -2559,7 +2579,7 @@
     <alt>Это описание может быть устаревшим!</alt>
   </str>
   <str>
-    <main>You can write a description to the strategy!</main>
+    <main>You can write a description of the strategy!</main>
     <alt>Можете написать описание стратегии!</alt>
   </str>
   <!-- Strategy Generator -->
@@ -2602,6 +2622,10 @@
   <str>
     <main>Do not change the Permanent Take Profit</main>
     <alt>Не изменять постоянный тейк профит</alt>
+  </str>
+  <str>
+    <main>Do not change the Break Even</main>
+    <alt>Не изменять Break Even</alt>
   </str>
   <str>
     <main>Perform an initial optimization</main>
@@ -2720,7 +2744,7 @@
     <alt>Позволить все индикаторы.</alt>
   </str>
   <str>
-    <main>Bann all indicators.</main>
+    <main>Ban all indicators.</main>
     <alt>Запретить все индикаторы.</alt>
   </str>
   <str>
@@ -2781,7 +2805,7 @@
     <alt>Скрыть FSB когда анализатор запускается</alt>
   </str>
   <str>
-    <main>The over-optimization report shows how the stats results of back test are changing with changing of the numerical parameters of the strategy by given percent.</main>
+    <main>The Over-optimization Report shows how the results of the backtest vary as the numerical parameters of the strategy change by a given percent.</main>
     <alt>Рапорт сверх-оптимизации показывающий как изменяются статистические результаты теста с изменением цифровых параметров стратегии с данными процентами.</alt>
   </str>
   <str>

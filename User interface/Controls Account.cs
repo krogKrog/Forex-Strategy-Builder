@@ -63,7 +63,7 @@ namespace Forex_Strategy_Builder
             tsbtScanner.Text        = Language.T("Scanner");
             tsbtScanner.Name        = "Scanner";
             tsbtScanner.Click      += new EventHandler(BtnTools_OnClick);
-            tsbtScanner.ToolTipText = Language.T("Perform a deep intrabar scanning.") + Environment.NewLine + Language.T("Quick scan") + " - F6.";
+            tsbtScanner.ToolTipText = Language.T("Perform a deep intrabar scan.") + Environment.NewLine + Language.T("Quick scan") + " - F6.";
             tsAccount.Items.Add(tsbtScanner);
 
             // Button Analyzer
@@ -157,6 +157,7 @@ namespace Forex_Strategy_Builder
                 chart.ShowIndicators    = Configs.BalanceChartIndicators;
                 chart.ShowAmbiguousBars = Configs.BalanceChartAmbiguousMark;
                 chart.TrueCharts        = Configs.BalanceChartTrueCharts;
+                chart.ShowProtections   = Configs.BalanceChartProtections;
 
                 chart.ShowDialog();
 
@@ -174,6 +175,7 @@ namespace Forex_Strategy_Builder
                 Configs.BalanceChartIndicators             = chart.ShowIndicators;
                 Configs.BalanceChartAmbiguousMark          = chart.ShowAmbiguousBars;
                 Configs.BalanceChartTrueCharts             = chart.TrueCharts;
+                Configs.BalanceChartProtections            = chart.ShowProtections;
             }
             else if (Data.IsData && Data.IsResult && e.Button == MouseButtons.Right)
             {

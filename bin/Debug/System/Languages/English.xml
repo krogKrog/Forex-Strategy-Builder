@@ -426,8 +426,8 @@
     <alt>Quick Scan</alt>
   </str>
   <str>
-    <main>Perform quick intrabar scanning.</main>
-    <alt>Perform quick intrabar scanning.</alt>
+    <main>Perform quick intrabar scan.</main>
+    <alt>Perform quick intrabar scan.</alt>
   </str>
   <str>
     <main>Publish</main>
@@ -574,8 +574,8 @@
     <alt>Scanner</alt>
   </str>
   <str>
-    <main>Perform a deep intrabar scanning.</main>
-    <alt>Perform a deep intrabar scanning.</alt>
+    <main>Perform a deep intrabar scan.</main>
+    <alt>Perform a deep intrabar scan.</alt>
   </str>
   <str>
     <main>Optimizer</main>
@@ -622,8 +622,8 @@
     <alt>Reset Settings</alt>
   </str>
   <str>
-    <main>Reset the program settings to their default values. You need to restart!</main>
-    <alt>Възстановяване на програмните настройки до техните първоначални стойности. Изисква рестарт!</alt>
+    <main>Reset the program settings to their default values. You will need to restart!</main>
+    <alt>Reset the program settings to their default values. You will need to restart!</alt>
   </str>
   <str>
     <main>Help</main>
@@ -684,6 +684,10 @@
   <str>
     <main>Check for New Beta Versions</main>
     <alt>Check for New Beta Versions</alt>
+  </str>
+  <str>
+    <main>Send anonymous usage statistics</main>
+    <alt>Send anonymous usage statistics</alt>
   </str>
   <str>
     <main>About</main>
@@ -818,11 +822,11 @@
   </str>
   <str>
     <main>Forex Strategy Builder uses the account exchange rate to calculate the trading statistics in your account currency.</main>
-    <alt>Forex Strategy Builder използва обменения курс на сметката, за да калкулира търговската статистика във валутата на вашата сметка.</alt>
+    <alt>Forex Strategy Builder uses the account exchange rate to calculate the trading statistics in your account currency.</alt>
   </str>
   <str>
     <main>When your account currency does not take part in the trading couple the account exchange rate is a fixed figure.</main>
-    <alt>Когато валутата на вашата сметка не участва в търгуваната валутна двойка, обменения курс на сметката е фиксирано число.</alt>
+    <alt>When your account currency does not take part in the trading couple the account exchange rate is a fixed figure.</alt>
   </str>
   <str>
     <main>Bar closing price</main>
@@ -1048,8 +1052,8 @@
     <alt>Additional Statistics</alt>
   </str>
   <str>
-    <main>Show long/short balance lines in the chart and more statistics in the overview.</main>
-    <alt>Show long/short balance lines in the chart and more statistics in the overview.</alt>
+    <main>Show long/short balance lines on the chart and more statistics in the overview.</main>
+    <alt>Show long/short balance lines on the chart and more statistics in the overview.</alt>
   </str>
   <str>
     <main>Profit factor</main>
@@ -1263,7 +1267,7 @@
   </str>
   <str>
     <main>Forex Strategy Builder automatically computes the proper logic for the short positions.</main>
-    <alt>Forex Strategy Builder изчислява автоматично подходяща логика за късите позиции.</alt>
+    <alt>Forex Strategy Builder automatically computes the proper logic for the short positions.</alt>
   </str>
   <str>
     <main>Always trade a constant number of lots.</main>
@@ -1322,12 +1326,12 @@
     <alt>No averaging is allowed. Cancel any additional orders which are in the same direction.</alt>
   </str>
   <str>
-    <main>Add to a wining position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</main>
-    <alt>Добавете към печеливша позиция, но не и към губеща. Ако позицията е на загуба отменете всеки допълнителен входящ ордер. Не превишавайте максималния брой на разрешените лотове за отваряне.</alt>
+    <main>Add to a winning position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</main>
+    <alt>Add to a winning position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</alt>
   </str>
   <str>
     <main>Add to the position no matter if it is at a profit or loss. Do not exceed the maximum allowed number of lots to open.</main>
-    <alt>Добавете към позиция, без значение дали тя е на печалба или на загуба. Не превишавайте максималния брой на разрешените лотове за отваряне.</alt>
+    <alt>Add to the position no matter if it is at a profit or loss. Do not exceed the maximum allowed number of lots to open.</alt>
   </str>
   <str>
     <main>Entry signal in the opposite direction:</main>
@@ -1335,19 +1339,19 @@
   </str>
   <str>
     <main>No modification of the present position is allowed. Cancel any additional orders which are in the opposite direction.</main>
-    <alt>Не са разрешени никакви модификации на съществуващата позиция. Отменете всички ордери, които са в противоположна посока.</alt>
+    <alt>No modification of the present position is allowed. Cancel any additional orders which are in the opposite direction.</alt>
   </str>
   <str>
     <main>Reduce the present position. If its amount is lower than or equal to the specified reducing lots, close it.</main>
-    <alt>Намалете съществуващата позиция. Затворете я, ако нейният размер е по-малък или равен на посочения брой лотове за намаляване.</alt>
+    <alt>Reduce the present position. If its amount is lower than or equal to the specified reducing lots, close it.</alt>
   </str>
   <str>
     <main>Close the present position regardless of its amount or result. Do not open a new position until the next entry signal has been raised.</main>
-    <alt>Затворете съществуващата позиция без значение от нейния размер или резултат. Не отваряйте нова позиция, докато не е подаден следващ входящ сигнал.</alt>
+    <alt>Close the present position regardless of its amount or result. Do not open a new position until the next entry signal has been raised.</alt>
   </str>
   <str>
     <main>Close the existing position and open a new one in the opposite direction using the entry rules.</main>
-    <alt>Затворете съществуващата позиция и отворете нова в обратната посока, като използвате правилата за вход.</alt>
+    <alt>Close the existing position and open a new one in the opposite direction using the entry rules.</alt>
   </str>
   <str>
     <main>Opening (Entry Signal)</main>
@@ -1382,12 +1386,16 @@
     <alt>pips profit.</alt>
   </str>
   <str>
+    <main>The position's Stop Loss will be set to Break Even price when the profit reaches</main>
+    <alt>The position's Stop Loss will be set to Break Even price when the profit reaches</alt>
+  </str>
+  <str>
     <main>Use the indicator value from the previous bar for all asterisk-marked indicators!</main>
-    <alt>Използвайте стойността на индикатора от предишния бар за всички индикатори маркирани със звездичка.</alt>
+    <alt>Use the indicator value from the previous bar for all asterisk-marked indicators!</alt>
   </str>
   <str>
     <main>The averaging rules apply to the entry signals only. Exit signals close a position. They cannot open, add or reduce one.</main>
-    <alt>Правилата за усредняване важат само за входящите сигнали. Изходящите сигнали затварят позицията. Те не могат да отварят, усредняват или отнемат от една позиция.</alt>
+    <alt>The averaging rules apply to the entry signals only. Exit signals close a position. They cannot open, add or reduce one.</alt>
   </str>
   <str>
     <main>Required margin</main>
@@ -1492,7 +1500,7 @@
   </str>
   <str>
     <main>You can use Closing Logic Conditions only if the Closing Point of the Position slot contains one of the following indicators:</main>
-    <alt>Можете да използвате Логически условия за затваряне само ако полето Точка на затваряне на позицията съдържа някой от следните индикатори:</alt>
+    <alt>You can use Closing Logic Conditions only if the Closing Point of the Position slot contains one of the following indicators:</alt>
   </str>
   <str>
     <main>Discard the logic condition.</main>
@@ -1908,8 +1916,8 @@
     <alt>Floating P/L chart</alt>
   </str>
   <str>
-    <main>Indicators chart</main>
-    <alt>Indicators chart</alt>
+    <main>Indicators charts</main>
+    <alt>Indicators charts</alt>
   </str>
   <str>
     <main>True indicator charts</main>
@@ -1982,6 +1990,10 @@
   <str>
     <main>Forming order price</main>
     <alt>Forming order price</alt>
+  </str>
+  <str>
+    <main>Break Even, Permanent SL, Permanent TP</main>
+    <alt>Break Even, Permanent SL, Permanent TP</alt>
   </str>
   <!-- Order's Comments -->
   <str>
@@ -2071,6 +2083,14 @@
   <str>
     <main>Permanent T/P to order</main>
     <alt>Permanent T/P to order</alt>
+  </str>
+  <str>
+    <main>Break Even to position</main>
+    <alt>Break Even to position</alt>
+  </str>
+  <str>
+    <main>Break Even activation to position</main>
+    <alt>Break Even activation to position</alt>
   </str>
   <!-- Bar Explorer -->
   <str>
@@ -2278,8 +2298,8 @@
     <alt>Slippage in</alt>
   </str>
   <str>
-    <main>percents</main>
-    <alt>percents</alt>
+    <main>percent</main>
+    <alt>percent</alt>
   </str>
   <str>
     <main>per lot</main>
@@ -2359,8 +2379,8 @@
     <alt>Publishing a strategy in the program's forum:</alt>
   </str>
   <str>
-    <main>Open a new topic in the forum</main>
-    <alt>Open a new topic in the forum</alt>
+    <main>Open a new topic in the forum;</main>
+    <alt>Open a new topic in the forum;</alt>
   </str>
   <str>
     <main>Copy / Paste the following code;</main>
@@ -2429,8 +2449,8 @@
     <alt>Label</alt>
   </str>
   <str>
-    <main>Probably the data is incomplete and the scanning may not be reliable!</main>
-    <alt>Probably the data is incomplete and the scanning may not be reliable!</alt>
+    <main>The data is probably incomplete and the scanning may not be reliable!</main>
+    <alt>The data is probably incomplete and the scanning may not be reliable!</alt>
   </str>
   <str>
     <main>Data for:</main>
@@ -2559,8 +2579,8 @@
     <alt>This description might be outdated!</alt>
   </str>
   <str>
-    <main>You can write a description to the strategy!</main>
-    <alt>You can write a description to the strategy!</alt>
+    <main>You can write a description of the strategy!</main>
+    <alt>You can write a description of the strategy!</alt>
   </str>
   <!-- Strategy Generator -->
   <str>
@@ -2602,6 +2622,10 @@
   <str>
     <main>Do not change the Permanent Take Profit</main>
     <alt>Do not change the Permanent Take Profit</alt>
+  </str>
+  <str>
+    <main>Do not change the Break Even</main>
+    <alt>Do not change the Break Even</alt>
   </str>
   <str>
     <main>Perform an initial optimization</main>
@@ -2720,8 +2744,8 @@
     <alt>Allow all indicators.</alt>
   </str>
   <str>
-    <main>Bann all indicators.</main>
-    <alt>Bann all indicators.</alt>
+    <main>Ban all indicators.</main>
+    <alt>Ban all indicators.</alt>
   </str>
   <str>
     <main>Banned Indicators</main>
@@ -2781,8 +2805,8 @@
     <alt>Hide FSB when Analyzer starts</alt>
   </str>
   <str>
-    <main>The over-optimization report shows how the stats results of back test are changing with changing of the numerical parameters of the strategy by given percent.</main>
-    <alt>Рапорта за свръх оптимизация показва как се променят статистическите резултати от бактеста при промяната на цифровите параметри на стратегията с определен процент.</alt>
+    <main>The Over-optimization Report shows how the results of the backtest vary as the numerical parameters of the strategy change by a given percent.</main>
+    <alt>The Over-optimization Report shows how the results of the backtest vary as the numerical parameters of the strategy change by a given percent.</alt>
   </str>
   <str>
     <main>View Charts</main>
@@ -2851,7 +2875,7 @@
   </str>
   <str>
     <main>Trade percent of your account. The percentage values show the part of the account equity used to cover the required margin.</main>
-    <alt>Търгуване на процент от акаунта. Процентната стойност показва частта от стойността на акаунта, използвана да покрие изисквания марджин.</alt>
+    <alt>Trade percent of your account. The percentage values show the part of the account equity used to cover the required margin.</alt>
   </str>
   <str>
     <main>Maximum number of open lots</main>
@@ -2913,7 +2937,7 @@
   <!-- Error and Warning Messages -->
   <str>
     <main>Forex Strategy Builder cannot load a historical data file and is going to use integrated data!</main>
-    <alt>Forex Strategy Builder не може да зареди файл с исторически данни и ще използва интегрирани данни!</alt>
+    <alt>Forex Strategy Builder cannot load a historical data file and is going to use integrated data!</alt>
   </str>
   <str>
     <main>Are you sure you want to control "Use previous bar value" manually?</main>

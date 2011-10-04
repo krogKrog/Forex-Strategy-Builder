@@ -426,7 +426,7 @@
     <alt>Бързо сканиране</alt>
   </str>
   <str>
-    <main>Perform quick intrabar scanning.</main>
+    <main>Perform quick intrabar scan.</main>
     <alt>Извършване на бързо вътребарово сканиране.</alt>
   </str>
   <str>
@@ -574,7 +574,7 @@
     <alt>Скенер</alt>
   </str>
   <str>
-    <main>Perform a deep intrabar scanning.</main>
+    <main>Perform a deep intrabar scan.</main>
     <alt>Извършване на дълбоко вътребарово сканиране.</alt>
   </str>
   <str>
@@ -622,7 +622,7 @@
     <alt>Възстановяване на настройките</alt>
   </str>
   <str>
-    <main>Reset the program settings to their default values. You need to restart!</main>
+    <main>Reset the program settings to their default values. You will need to restart!</main>
     <alt>Възстановяване на програмните настройки до техните първоначални стойности. Изисква рестарт!</alt>
   </str>
   <str>
@@ -683,7 +683,11 @@
   </str>
   <str>
     <main>Check for New Beta Versions</main>
-    <alt>Проверка за нови бета версии </alt>
+    <alt>Проверка за нови бета версии</alt>
+  </str>
+  <str>
+    <main>Send anonymous usage statistics</main>
+    <alt>Изпращане на анонимна статистика за използване</alt>
   </str>
   <str>
     <main>About</main>
@@ -1048,7 +1052,7 @@
     <alt>Допълнителна статистика</alt>
   </str>
   <str>
-    <main>Show long/short balance lines in the chart and more statistics in the overview.</main>
+    <main>Show long/short balance lines on the chart and more statistics in the overview.</main>
     <alt>Показване на балансните лини за къса и дълга позиция и повече статистически параметри.</alt>
   </str>
   <str>
@@ -1322,7 +1326,7 @@
     <alt>Усредняването не е разрешено. Отменете всички допълнителни ордери, които са в същата посока.</alt>
   </str>
   <str>
-    <main>Add to a wining position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</main>
+    <main>Add to a winning position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</main>
     <alt>Добавете към печеливша позиция, но не и към губеща. Ако позицията е на загуба отменете всеки допълнителен входящ ордер. Не превишавайте максималния брой на разрешените лотове за отваряне.</alt>
   </str>
   <str>
@@ -1380,6 +1384,10 @@
   <str>
     <main>pips profit.</main>
     <alt>пипса печалба.</alt>
+  </str>
+  <str>
+    <main>The position's Stop Loss will be set to Break Even price when the profit reaches</main>
+    <alt>Stop Loss на позицията ще се премести на цената Break Even, когато печалбата на позицията достигне</alt>
   </str>
   <str>
     <main>Use the indicator value from the previous bar for all asterisk-marked indicators!</main>
@@ -1908,7 +1916,7 @@
     <alt>Графика на плаващата П/З</alt>
   </str>
   <str>
-    <main>Indicators chart</main>
+    <main>Indicators charts</main>
     <alt>Графика на индикаторите</alt>
   </str>
   <str>
@@ -1982,6 +1990,10 @@
   <str>
     <main>Forming order price</main>
     <alt>Цена на формиращ ордер</alt>
+  </str>
+  <str>
+    <main>Break Even, Permanent SL, Permanent TP</main>
+    <alt>Break Even, Permanent SL, Permanent TP</alt>
   </str>
   <!-- Order's Comments -->
   <str>
@@ -2071,6 +2083,14 @@
   <str>
     <main>Permanent T/P to order</main>
     <alt>Постоянен T/P към ордер</alt>
+  </str>
+  <str>
+    <main>Break Even to position</main>
+    <alt>Break Even към позиция</alt>
+  </str>
+  <str>
+    <main>Break Even activation to position</main>
+    <alt>Break Even активация към позиция</alt>
   </str>
   <!-- Bar Explorer -->
   <str>
@@ -2278,7 +2298,7 @@
     <alt>Приплъзване в</alt>
   </str>
   <str>
-    <main>percents</main>
+    <main>percent</main>
     <alt>проценти</alt>
   </str>
   <str>
@@ -2359,7 +2379,7 @@
     <alt>Публикуване на стратегия в програмния форум:</alt>
   </str>
   <str>
-    <main>Open a new topic in the forum</main>
+    <main>Open a new topic in the forum;</main>
     <alt>Отворете нова тема във форума</alt>
   </str>
   <str>
@@ -2429,7 +2449,7 @@
     <alt>Етикет</alt>
   </str>
   <str>
-    <main>Probably the data is incomplete and the scanning may not be reliable!</main>
+    <main>The data is probably incomplete and the scanning may not be reliable!</main>
     <alt>Вероятно данните са непълни и сканирането може да не е надеждно!</alt>
   </str>
   <str>
@@ -2559,7 +2579,7 @@
     <alt>Това описание може да е остаряло!</alt>
   </str>
   <str>
-    <main>You can write a description to the strategy!</main>
+    <main>You can write a description of the strategy!</main>
     <alt>Можете да напишете описание към стратегията!</alt>
   </str>
   <!-- Strategy Generator -->
@@ -2602,6 +2622,10 @@
   <str>
     <main>Do not change the Permanent Take Profit</main>
     <alt>Без промяна на постоянния Take Profit</alt>
+  </str>
+  <str>
+    <main>Do not change the Break Even</main>
+    <alt>Без промяна на Break Even</alt>
   </str>
   <str>
     <main>Perform an initial optimization</main>
@@ -2720,7 +2744,7 @@
     <alt>Разрешаване на всички индикатори.</alt>
   </str>
   <str>
-    <main>Bann all indicators.</main>
+    <main>Ban all indicators.</main>
     <alt>Отхвърляне на всички индикатори.</alt>
   </str>
   <str>
@@ -2781,7 +2805,7 @@
     <alt>Скрий FSB при запускане на Анализатора</alt>
   </str>
   <str>
-    <main>The over-optimization report shows how the stats results of back test are changing with changing of the numerical parameters of the strategy by given percent.</main>
+    <main>The Over-optimization Report shows how the results of the backtest vary as the numerical parameters of the strategy change by a given percent.</main>
     <alt>Рапорта за свръх оптимизация показва как се променят статистическите резултати от бактеста при промяната на цифровите параметри на стратегията с определен процент.</alt>
   </str>
   <str>

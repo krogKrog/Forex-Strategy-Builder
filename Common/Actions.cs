@@ -101,9 +101,6 @@ namespace Forex_Strategy_Builder
 
             Check_Update liveContent = new Check_Update(Data.SystemDir, miLiveContent, miForex);
 
-            Registrar registrar = new Registrar();
-            registrar.Register();
-
             // Starting tips
             if (Configs.ShowStartingTip)
             {
@@ -169,21 +166,28 @@ namespace Forex_Strategy_Builder
             else if (dialogResult == DialogResult.Cancel)
                 e.Cancel = true;
 
-            // Remember the last used strategy
-            if (Configs.RememberLastStr)
+            if (!e.Cancel)
             {
-                if (Data.LoadedSavedStrategy != "")
+                // Remember the last used strategy
+                if (Configs.RememberLastStr)
                 {
-                    string strategyPath = Path.GetDirectoryName(Data.LoadedSavedStrategy) + Path.DirectorySeparatorChar;
-                    string defaultPath  = Path.Combine(Data.ProgramDir, Data.DefaultStrategyDir);
-                    if (strategyPath == defaultPath)
-                        Data.LoadedSavedStrategy = Path.GetFileName(Data.LoadedSavedStrategy);
+                    if (Data.LoadedSavedStrategy != "")
+                    {
+                        string strategyPath = Path.GetDirectoryName(Data.LoadedSavedStrategy) + Path.DirectorySeparatorChar;
+                        string defaultPath  = Path.Combine(Data.ProgramDir, Data.DefaultStrategyDir);
+                        if (strategyPath == defaultPath)
+                            Data.LoadedSavedStrategy = Path.GetFileName(Data.LoadedSavedStrategy);
+                    }
+                    Configs.LastStrategy = Data.LoadedSavedStrategy;
                 }
-                Configs.LastStrategy = Data.LoadedSavedStrategy;
-            }
 
-            Configs.SaveConfigs();
-            Instruments.SaveInstruments();
+                Configs.SaveConfigs();
+                Instruments.SaveInstruments();
+#if !DEBUG
+                this.Hide();
+                Data.SendStats();
+#endif
+            }
 
             return;
         }
@@ -706,17 +710,20 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Reads the strategy from a file.
         /// </summary>
-        /// <param name="strategyName">The strategy name.</param>
         /// <returns>0 - success.</returns>
-        int OpenStrategy(string strategyName)
+        int OpenStrategy(string strategyFilePath)
         {
             try
             {
-                if (File.Exists(strategyName) && Strategy.Load(strategyName))
+                if (File.Exists(strategyFilePath) && Strategy.Load(strategyFilePath))
                 {   // Successfully opening
-                    Data.Strategy.StrategyName = Path.GetFileNameWithoutExtension(strategyName);
-                    Data.StrategyDir  = Path.GetDirectoryName(strategyName);
-                    Data.StrategyName = Path.GetFileName(strategyName);
+                    Data.Strategy.StrategyName = Path.GetFileNameWithoutExtension(strategyFilePath);
+                    Data.StrategyDir  = Path.GetDirectoryName(strategyFilePath);
+                    Data.StrategyName = Path.GetFileName(strategyFilePath);
+                    if (Data.Strategy.OpenFilters > Configs.MAX_ENTRY_FILTERS)
+                        Configs.MAX_ENTRY_FILTERS = Data.Strategy.OpenFilters;
+                    if (Data.Strategy.CloseFilters > Configs.MAX_EXIT_FILTERS)
+                        Configs.MAX_EXIT_FILTERS = Data.Strategy.CloseFilters;
                 }
                 else
                 {
@@ -767,6 +774,7 @@ namespace Forex_Strategy_Builder
                     this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + " - " + Data.ProgramName;
                     Data.IsStrategyChanged = false;
                     Data.LoadedSavedStrategy = Data.StrategyPath;
+                    Data.SavedStrategies++;
                 }
                 catch (Exception exc)
                 {
@@ -802,6 +810,7 @@ namespace Forex_Strategy_Builder
                     this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + " - " + Data.ProgramName;
                     Data.IsStrategyChanged = false;
                     Data.LoadedSavedStrategy = Data.StrategyPath;
+                    Data.SavedStrategies++;
                 }
                 catch (Exception exc)
                 {
@@ -845,9 +854,6 @@ namespace Forex_Strategy_Builder
 
             // Searches the indicators' components to determine the Data.FirstBar
             Data.FirstBar = Data.Strategy.SetFirstBar();
-
-            // Logging
-            Data.Log("Calculate the strategy");
 
             // Calculates the backtest
             Backtester.Calculate();
@@ -1171,7 +1177,9 @@ namespace Forex_Strategy_Builder
             {   // When we cancel the Generating, we return the original strategy.
                 UndoStrategy();
             }
+
             Data.IsStrategyReady = true;
+            Data.GeneratorStarts++;
 
             return;
         }
@@ -1211,7 +1219,10 @@ namespace Forex_Strategy_Builder
             {   // When we cancel the optimizing, we return the original strategy.
                 UndoStrategy();
             }
+
             Data.IsStrategyReady = true;
+            Data.OptimizerStarts++;
+
         }
 
         /// <summary>

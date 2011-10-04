@@ -623,7 +623,11 @@
   </str>
   <str>
     <main>Reset the program settings to their default values. You will need to restart!</main>
+<<<<<<< HEAD
     <alt>Въз�?танов�?ване на програмните на�?тройки до техните първоначални �?тойно�?ти. Изи�?ква ре�?тарт!</alt>
+=======
+    <alt>Reset the program settings to their default values. You will need to restart!</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Help</main>
@@ -684,6 +688,10 @@
   <str>
     <main>Check for New Beta Versions</main>
     <alt>Check for New Beta Versions</alt>
+  </str>
+  <str>
+    <main>Send anonymous usage statistics</main>
+    <alt>Send anonymous usage statistics</alt>
   </str>
   <str>
     <main>About</main>
@@ -818,11 +826,19 @@
   </str>
   <str>
     <main>Forex Strategy Builder uses the account exchange rate to calculate the trading statistics in your account currency.</main>
+<<<<<<< HEAD
     <alt>Forex Strategy Builder използва обменени�? кур�? на �?метката, за да калкулира търгов�?ката �?тати�?тика във валутата на вашата �?метка.</alt>
   </str>
   <str>
     <main>When your account currency does not take part in the trading couple the account exchange rate is a fixed figure.</main>
     <alt>Когато валутата на вашата �?метка не уча�?тва в търгуваната валутна двойка, обменени�? кур�? на �?метката е фик�?ирано чи�?ло.</alt>
+=======
+    <alt>Forex Strategy Builder uses the account exchange rate to calculate the trading statistics in your account currency.</alt>
+  </str>
+  <str>
+    <main>When your account currency does not take part in the trading couple the account exchange rate is a fixed figure.</main>
+    <alt>When your account currency does not take part in the trading couple the account exchange rate is a fixed figure.</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Bar closing price</main>
@@ -1263,7 +1279,11 @@
   </str>
   <str>
     <main>Forex Strategy Builder automatically computes the proper logic for the short positions.</main>
+<<<<<<< HEAD
     <alt>Forex Strategy Builder изчи�?л�?ва автоматично подход�?ща логика за къ�?ите позиции.</alt>
+=======
+    <alt>Forex Strategy Builder automatically computes the proper logic for the short positions.</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Always trade a constant number of lots.</main>
@@ -1323,11 +1343,19 @@
   </str>
   <str>
     <main>Add to a winning position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</main>
+<<<<<<< HEAD
     <alt>Добавете към печеливша позици�?, но не и към губеща. �?ко позици�?та е на загуба отменете в�?еки допълнителен вход�?щ ордер. �?е превишавайте мак�?имални�? брой на разрешените лотове за отвар�?не.</alt>
   </str>
   <str>
     <main>Add to the position no matter if it is at a profit or loss. Do not exceed the maximum allowed number of lots to open.</main>
     <alt>Добавете към позици�?, без значение дали т�? е на печалба или на загуба. �?е превишавайте мак�?имални�? брой на разрешените лотове за отвар�?не.</alt>
+=======
+    <alt>Add to a winning position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open.</alt>
+  </str>
+  <str>
+    <main>Add to the position no matter if it is at a profit or loss. Do not exceed the maximum allowed number of lots to open.</main>
+    <alt>Add to the position no matter if it is at a profit or loss. Do not exceed the maximum allowed number of lots to open.</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Entry signal in the opposite direction:</main>
@@ -1335,6 +1363,7 @@
   </str>
   <str>
     <main>No modification of the present position is allowed. Cancel any additional orders which are in the opposite direction.</main>
+<<<<<<< HEAD
     <alt>�?е �?а разрешени никакви модификации на �?ъще�?твуващата позици�?. Отменете в�?ички ордери, които �?а в противоположна по�?ока.</alt>
   </str>
   <str>
@@ -1348,6 +1377,21 @@
   <str>
     <main>Close the existing position and open a new one in the opposite direction using the entry rules.</main>
     <alt>Затворете �?ъще�?твуващата позици�? и отворете нова в обратната по�?ока, като използвате правилата за вход.</alt>
+=======
+    <alt>No modification of the present position is allowed. Cancel any additional orders which are in the opposite direction.</alt>
+  </str>
+  <str>
+    <main>Reduce the present position. If its amount is lower than or equal to the specified reducing lots, close it.</main>
+    <alt>Reduce the present position. If its amount is lower than or equal to the specified reducing lots, close it.</alt>
+  </str>
+  <str>
+    <main>Close the present position regardless of its amount or result. Do not open a new position until the next entry signal has been raised.</main>
+    <alt>Close the present position regardless of its amount or result. Do not open a new position until the next entry signal has been raised.</alt>
+  </str>
+  <str>
+    <main>Close the existing position and open a new one in the opposite direction using the entry rules.</main>
+    <alt>Close the existing position and open a new one in the opposite direction using the entry rules.</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Opening (Entry Signal)</main>
@@ -1382,12 +1426,24 @@
     <alt>pips profit.</alt>
   </str>
   <str>
+    <main>The position's Stop Loss will be set to Break Even price when the profit reaches</main>
+    <alt>The position's Stop Loss will be set to Break Even price when the profit reaches</alt>
+  </str>
+  <str>
     <main>Use the indicator value from the previous bar for all asterisk-marked indicators!</main>
+<<<<<<< HEAD
     <alt>Използвайте �?тойно�?тта на индикатора от предишни�? бар за в�?ички индикатори маркирани �?ъ�? звездичка.</alt>
   </str>
   <str>
     <main>The averaging rules apply to the entry signals only. Exit signals close a position. They cannot open, add or reduce one.</main>
     <alt>Правилата за у�?редн�?ване важат �?амо за вход�?щите �?игнали. Изход�?щите �?игнали затвар�?т позици�?та. Те не могат да отвар�?т, у�?редн�?ват или отнемат от една позици�?.</alt>
+=======
+    <alt>Use the indicator value from the previous bar for all asterisk-marked indicators!</alt>
+  </str>
+  <str>
+    <main>The averaging rules apply to the entry signals only. Exit signals close a position. They cannot open, add or reduce one.</main>
+    <alt>The averaging rules apply to the entry signals only. Exit signals close a position. They cannot open, add or reduce one.</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Required margin</main>
@@ -1492,7 +1548,11 @@
   </str>
   <str>
     <main>You can use Closing Logic Conditions only if the Closing Point of the Position slot contains one of the following indicators:</main>
+<<<<<<< HEAD
     <alt>Можете да използвате Логиче�?ки у�?лови�? за затвар�?не �?амо ако полето Точка на затвар�?не на позици�?та �?ъдържа н�?кой от �?ледните индикатори:</alt>
+=======
+    <alt>You can use Closing Logic Conditions only if the Closing Point of the Position slot contains one of the following indicators:</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Discard the logic condition.</main>
@@ -1908,8 +1968,13 @@
     <alt>Floating P/L chart</alt>
   </str>
   <str>
+<<<<<<< HEAD
     <main>Indicator charts</main>
     <alt>Indicator charts</alt>
+=======
+    <main>Indicators charts</main>
+    <alt>Indicators charts</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>True indicator charts</main>
@@ -1982,6 +2047,10 @@
   <str>
     <main>Forming order price</main>
     <alt>Forming order price</alt>
+  </str>
+  <str>
+    <main>Break Even, Permanent SL, Permanent TP</main>
+    <alt>Break Even, Permanent SL, Permanent TP</alt>
   </str>
   <!-- Order's Comments -->
   <str>
@@ -2071,6 +2140,14 @@
   <str>
     <main>Permanent T/P to order</main>
     <alt>Permanent T/P to order</alt>
+  </str>
+  <str>
+    <main>Break Even to position</main>
+    <alt>Break Even to position</alt>
+  </str>
+  <str>
+    <main>Break Even activation to position</main>
+    <alt>Break Even activation to position</alt>
   </str>
   <!-- Bar Explorer -->
   <str>
@@ -2604,6 +2681,10 @@
     <alt>Do not change the Permanent Take Profit</alt>
   </str>
   <str>
+    <main>Do not change the Break Even</main>
+    <alt>Do not change the Break Even</alt>
+  </str>
+  <str>
     <main>Perform an initial optimization</main>
     <alt>Perform an initial optimization</alt>
   </str>
@@ -2782,7 +2863,11 @@
   </str>
   <str>
     <main>The Over-optimization Report shows how the results of the backtest vary as the numerical parameters of the strategy change by a given percent.</main>
+<<<<<<< HEAD
     <alt>Рапорта за �?връх оптимизаци�? показва как �?е промен�?т �?тати�?тиче�?ките резултати от бакте�?та при пром�?ната на цифровите параметри на �?тратеги�?та �? определен процент.</alt>
+=======
+    <alt>The Over-optimization Report shows how the results of the backtest vary as the numerical parameters of the strategy change by a given percent.</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>View Charts</main>
@@ -2851,7 +2936,11 @@
   </str>
   <str>
     <main>Trade percent of your account. The percentage values show the part of the account equity used to cover the required margin.</main>
+<<<<<<< HEAD
     <alt>Търгуване на процент от акаунта. Процентната �?тойно�?т показва ча�?тта от �?тойно�?тта на акаунта, използвана да покрие изи�?квани�? марджин.</alt>
+=======
+    <alt>Trade percent of your account. The percentage values show the part of the account equity used to cover the required margin.</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Maximum number of open lots</main>
@@ -2913,7 +3002,11 @@
   <!-- Error and Warning Messages -->
   <str>
     <main>Forex Strategy Builder cannot load a historical data file and is going to use integrated data!</main>
+<<<<<<< HEAD
     <alt>Forex Strategy Builder не може да зареди файл �? и�?ториче�?ки данни и ще използва интегрирани данни!</alt>
+=======
+    <alt>Forex Strategy Builder cannot load a historical data file and is going to use integrated data!</alt>
+>>>>>>> upstream/master
   </str>
   <str>
     <main>Are you sure you want to control "Use previous bar value" manually?</main>

@@ -7,6 +7,7 @@
 using System;
 using System.IO;
 using System.Xml;
+using Microsoft.Win32;
 
 namespace Forex_Strategy_Builder
 {
@@ -34,7 +35,7 @@ namespace Forex_Strategy_Builder
         static bool   isRememberLastStrDefault      = true;
         static string lastStrategyDefault           = "";
         static bool   isCheckForUpdatesDefault      = true;
-        static bool   isCheckForNewBetaDefault      = true;
+        static bool   isCheckForNewBetaDefault      = false;
         static bool   isCheckDataDefault            = true;
         static bool   isFillDataGapsDefault         = false;
         static bool   isCutBadDataDefault           = false;
@@ -72,6 +73,7 @@ namespace Forex_Strategy_Builder
         static string bannedIndicatorsDefault       = "";
         static bool   showPriceChartOnAccountChartDefault = false;
         static bool   analyzerHideFSBDefault        = true;
+        static bool   sendUsageStatsDefault         = true;
 
         // Indicator Chart
         static int  indicatorChartZoomDefault                     = 8;
@@ -88,6 +90,7 @@ namespace Forex_Strategy_Builder
         static bool isIndicatorChartIndicatorsDefault             = true;
         static bool isIndicatorChartAmbiguousMarkDefault          = true;
         static bool isIndicatorChartTrueChartsDefault             = false;
+        static bool isIndicatorChartProtectionsDefault            = false;
 
         // Balance Chart
         static int  balanceChartZoomDefault                     = 8;
@@ -104,6 +107,7 @@ namespace Forex_Strategy_Builder
         static bool isBalanceChartIndicatorsDefault             = false;
         static bool isBalanceChartAmbiguousMarkDefault          = true;
         static bool isBalanceChartTrueChartsDefault             = false;
+        static bool isBalanceChartProtectionsDefault            = false;
 
 // ------------------------------------------------------------
         static int iMIN_BARS = MIN_BARSDefault;
@@ -920,6 +924,18 @@ namespace Forex_Strategy_Builder
             }
         }
 
+        static bool sendUsageStats = sendUsageStatsDefault;
+        public static bool SendUsageStats
+        {
+            get { return sendUsageStats; }
+            set
+            {
+                sendUsageStats = value;
+                if (isConfigLoaded)
+                    xmlConfig.SelectNodes("config/sendUsageStats").Item(0).InnerText = value.ToString();
+            }
+        }
+
 
 // -------------------------------------------------------------
 
@@ -1091,6 +1107,19 @@ namespace Forex_Strategy_Builder
                     xmlConfig.SelectNodes("config/indicatorChart/trueCharts").Item(0).InnerText = value.ToString();
             }
         }
+
+        static bool isIndicatorChartProtections = isIndicatorChartProtectionsDefault;
+        public static bool IndicatorChartProtections
+        {
+            get { return isIndicatorChartProtections; }
+            set
+            {
+                isIndicatorChartProtections = value;
+                if (isConfigLoaded)
+                    xmlConfig.SelectNodes("config/indicatorChart/protections").Item(0).InnerText = value.ToString();
+            }
+        }
+
 // -------------------------------------------------------------
         static int balanceChartZoom = balanceChartZoomDefault;
         public static int BalanceChartZoom
@@ -1260,6 +1289,20 @@ namespace Forex_Strategy_Builder
             }
         }
 
+        static bool isBalanceChartProtections = isBalanceChartProtectionsDefault;
+        public static bool BalanceChartProtections
+        {
+            get { return isBalanceChartProtections; }
+            set
+            {
+                isBalanceChartProtections = value;
+                if (isConfigLoaded)
+                    xmlConfig.SelectNodes("config/balanceChart/protections").Item(0).InnerText = value.ToString();
+            }
+        }
+
+// ----------------------------------------------------------------------
+
         /// <summary>
         /// Public constructor
         /// </summary>
@@ -1347,8 +1390,9 @@ namespace Forex_Strategy_Builder
             IndicatorChartIndicators             = isIndicatorChartIndicatorsDefault;
             IndicatorChartAmbiguousMark          = isIndicatorChartAmbiguousMarkDefault;
             IndicatorChartTrueCharts             = isIndicatorChartTrueChartsDefault;
+            IndicatorChartProtections            = isIndicatorChartProtectionsDefault;
 
-            // Indicator Chart
+            // Balance Chart
             BalanceChartZoom                   = balanceChartZoomDefault;
             BalanceChartInfoPanel              = isBalanceChartInfoPanelDefault;
             BalanceChartDynamicInfo            = isBalanceChartDynamicInfoDefault;
@@ -1363,6 +1407,7 @@ namespace Forex_Strategy_Builder
             BalanceChartIndicators             = isBalanceChartIndicatorsDefault;
             BalanceChartAmbiguousMark          = isBalanceChartAmbiguousMarkDefault;
             BalanceChartTrueCharts             = isBalanceChartTrueChartsDefault;
+            BalanceChartProtections            = isBalanceChartProtectionsDefault;
 
             SaveConfigs();
             isResetActivated = true;
@@ -1419,6 +1464,7 @@ namespace Forex_Strategy_Builder
             bannedIndicators             = ParseNode("config/bannedIndicators", bannedIndicatorsDefault);
             showPriceChartOnAccountChart = ParseNode("config/showPriceChartOnAccountChart", showPriceChartOnAccountChartDefault);
             analyzerHideFSB              = ParseNode("config/analyzerHideFSB", analyzerHideFSBDefault);
+            sendUsageStats               = ParseNode("config/sendUsageStats", sendUsageStatsDefault);
 
             // Data Horizon
             maxBars                      = ParseNode("config/dataHorizon/maxBars", maxBarsDefault);
@@ -1452,9 +1498,10 @@ namespace Forex_Strategy_Builder
             isIndicatorChartIndicators             = ParseNode("config/indicatorChart/indicators", isIndicatorChartIndicatorsDefault);
             isIndicatorChartAmbiguousMark          = ParseNode("config/indicatorChart/ambiguousMark", isIndicatorChartAmbiguousMarkDefault);
             isIndicatorChartTrueCharts             = ParseNode("config/indicatorChart/trueCharts", isIndicatorChartTrueChartsDefault);
+            isIndicatorChartProtections            = ParseNode("config/indicatorChart/protections", isIndicatorChartProtectionsDefault);
 
             // Balance Chart
-            balanceChartZoom                    = ParseNode("config/balanceChart/zoom", balanceChartZoomDefault);
+            balanceChartZoom                     = ParseNode("config/balanceChart/zoom", balanceChartZoomDefault);
             isBalanceChartInfoPanel              = ParseNode("config/balanceChart/infoPanel", isBalanceChartInfoPanelDefault);
             isBalanceChartDynamicInfo            = ParseNode("config/balanceChart/dynamicInfo", isBalanceChartDynamicInfoDefault);
             isBalanceChartGrid                   = ParseNode("config/balanceChart/grid", isBalanceChartGridDefault);
@@ -1468,11 +1515,31 @@ namespace Forex_Strategy_Builder
             isBalanceChartIndicators             = ParseNode("config/balanceChart/indicators", isBalanceChartIndicatorsDefault);
             isBalanceChartAmbiguousMark          = ParseNode("config/balanceChart/ambiguousMark", isBalanceChartAmbiguousMarkDefault);
             isBalanceChartTrueCharts             = ParseNode("config/balanceChart/trueCharts", isBalanceChartTrueChartsDefault);
+            isBalanceChartProtections            = ParseNode("config/balanceChart/protections", isBalanceChartProtectionsDefault);
 
+            return;
+        }
+
+        /// <summary>
+        /// Sets params after loading config file.
+        /// </summary>
+        static void ConfigAfterLoading()
+        {
             if (maxBars > iMAX_BARS)
                 maxBars = iMAX_BARS;
 
-            return;
+            if (!isInstalled)
+            {
+                RegistryKey regKey = Registry.CurrentUser;
+                regKey = regKey.CreateSubKey("Software\\Forex Software\\Forex Strategy Builder");
+                SendUsageStats = (regKey.GetValue("UsageStats") == null || regKey.GetValue("UsageStats").ToString() == "0");
+                IsInstalled = true;
+            }
+
+            if (dataDirectory != "" && Directory.Exists(dataDirectory))
+            {
+                Data.OfflineDataDir = dataDirectory;
+            }
         }
 
         /// <summary>
@@ -1561,15 +1628,18 @@ namespace Forex_Strategy_Builder
         {
             try
             {
-                xmlConfig.Load(pathToConfigFile);
+                if (!File.Exists(pathToConfigFile))
+                {
+                    xmlConfig = new XmlDocument();
+                    xmlConfig.InnerXml = Properties.Resources.config;
+                }
+                else
+                {
+                    xmlConfig.Load(pathToConfigFile);
+                }
                 ParseConfigs();
                 isConfigLoaded = true;
-
-                // Data directory
-                if (dataDirectory != "" && Directory.Exists(dataDirectory))
-                {
-                    Data.OfflineDataDir = dataDirectory;
-                }
+                ConfigAfterLoading();
             }
             catch (Exception ex)
             {

@@ -18,7 +18,6 @@ namespace Forex_Strategy_Builder
     {
         string updateFileURL = "http://forexsb.com/products/fsb-update.xml";
         string pathUpdateFile;
-        string pathSystem;
         Dictionary<string, string> dictBrokers;
         ToolStripMenuItem miLiveContent;
         ToolStripMenuItem miForex;
@@ -31,7 +30,6 @@ namespace Forex_Strategy_Builder
         /// </summary>
         public Check_Update(string pathSystem, ToolStripMenuItem miLiveContent, ToolStripMenuItem miForex)
         {
-            this.pathSystem    = pathSystem;
             this.miLiveContent = miLiveContent;
             this.miForex       = miForex;
             pathUpdateFile     = Path.Combine(pathSystem, "fsb-update.xml");
@@ -80,7 +78,15 @@ namespace Forex_Strategy_Builder
         {
             try
             {
-                xmlUpdateFile.Load(pathUpdateFile);
+                if (!File.Exists(pathUpdateFile))
+                {
+                    xmlUpdateFile = new XmlDocument();
+                    xmlUpdateFile.InnerXml = Properties.Resources.fsb_update;
+                }
+                else
+                {
+                    xmlUpdateFile.Load(pathUpdateFile);
+                }
             }
             catch (Exception e)
             {

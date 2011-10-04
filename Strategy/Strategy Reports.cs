@@ -27,13 +27,13 @@ namespace Forex_Strategy_Builder
             string nl = Environment.NewLine;
             string nl2 = Environment.NewLine + Environment.NewLine;
 
-            strBBCode += "[b]" + Data.ProgramName + " v" + Data.ProgramVersion + stage + "[/b]" + nl;
             strBBCode += "Strategy name: [b]" + strategyName + "[/b]" + nl;
+            strBBCode += Data.ProgramName + " v" + Data.ProgramVersion + stage + nl;
             strBBCode += "Exported on: " + DateTime.Now + nl;
             strBBCode += nl;
 
             // Description
-            strBBCode += "[b]Description[/b]" + nl;
+            strBBCode += "Description:" + nl;
 
             if (Description != "")
             {
@@ -46,105 +46,112 @@ namespace Forex_Strategy_Builder
                 strBBCode += "   None." + nl2;
 
             strBBCode += "Market: " + Data.Symbol + " " + Data.PeriodString + nl;
-            strBBCode += "Spread in pips: " + Data.InstrProperties.Spread + nl;
+            strBBCode += "Spread in pips: " + Data.InstrProperties.Spread.ToString("F2") + nl;
             strBBCode += "Swap Long in " +
                 (Data.InstrProperties.SwapType == Commission_Type.money ? Data.InstrProperties.PriceIn : Data.InstrProperties.SwapType.ToString()) + ": " +
-                Data.InstrProperties.SwapLong.ToString()  + nl;
+                Data.InstrProperties.SwapLong.ToString("F2")  + nl;
             strBBCode += "Swap Short in " +
                 (Data.InstrProperties.SwapType == Commission_Type.money ? Data.InstrProperties.PriceIn : Data.InstrProperties.SwapType.ToString()) + ": " +
-                Data.InstrProperties.SwapShort.ToString() + nl;
+                Data.InstrProperties.SwapShort.ToString("F2") + nl;
             strBBCode += "Commission per " +
                 Data.InstrProperties.CommissionScope.ToString() + " at " +
                 (Data.InstrProperties.CommissionTime == Commission_Time.open ? "opening" : "opening and closing") + " in " +
                 (Data.InstrProperties.CommissionType == Commission_Type.money ? Data.InstrProperties.PriceIn : Data.InstrProperties.CommissionType.ToString()) + ": " +
-                Data.InstrProperties.Commission.ToString() + nl;
+                Data.InstrProperties.Commission.ToString("F2") + nl;
             strBBCode += "Slippage in pips: " + Data.InstrProperties.Slippage + nl2;
 
             strBBCode += UseAccountPercentEntry ? "Use account % for margin round to whole lots" + nl : "";
             string tradingUnit = UseAccountPercentEntry ? "% of the account for margin" : "";
-            strBBCode += "Maximum open lots: " + MaxOpenLots + nl;
-            strBBCode += "Entry lots: "    + EntryLots    + tradingUnit + nl;
-            strBBCode += "Adding lots: "   + AddingLots   + tradingUnit + nl;
-            strBBCode += "Reducing lots: " + ReducingLots + tradingUnit + nl;
+            strBBCode += "Maximum open lots: " + MaxOpenLots.ToString("F2") + nl;
+            strBBCode += "Entry lots: "    + EntryLots.ToString("F2")    + tradingUnit + nl;
+            strBBCode += "Adding lots: "   + AddingLots.ToString("F2")   + tradingUnit + nl;
+            strBBCode += "Reducing lots: " + ReducingLots.ToString("F2") + tradingUnit + nl;
             strBBCode += nl;
             strBBCode += "Intrabar scanning: "    + (Backtester.IsScanPerformed ? "Accomplished" : "Not accomplished") + nl;
             strBBCode += "Interpolation method: " + Backtester.InterpolationMethodToString() + nl;
             strBBCode += "Ambiguous bars: "       + Backtester.AmbiguousBars          + nl;
-            strBBCode += "Tested bars: "          + (Backtester.Bars - Data.FirstBar) + nl;
+            strBBCode += "Tested bars: "          + (Data.Bars - Data.FirstBar) + nl;
             strBBCode += "Balance: [b]"           + Backtester.NetBalance  + " pips (" + Backtester.NetMoneyBalance.ToString("F2")  + " " + Data.InstrProperties.PriceIn + ")[/b]" + nl;
             strBBCode += "Minimum account: "      + Backtester.MinBalance  + " pips (" + Backtester.MinMoneyBalance.ToString("F2")  + " " + Data.InstrProperties.PriceIn + ")"     + nl;
             strBBCode += "Maximum drawdown: "     + Backtester.MaxDrawdown + " pips (" + Backtester.MaxMoneyDrawdown.ToString("F2") + " " + Data.InstrProperties.PriceIn + ")"     + nl;
             strBBCode += "Time in position: "     + Backtester.TimeInPosition + " %" + nl;
             strBBCode += nl;
 
+            strBBCode += "[b][color=#966][Strategy Properties][/color][/b]" + nl;
             if (SameSignalAction == SameDirSignalAction.Add)
-                strBBCode += "[b]A same direction signal[/b] - [i]Adds to the position[/i]" + nl;
+                strBBCode += "     A same direction signal - Adds to the position" + nl;
             else if (SameSignalAction == SameDirSignalAction.Winner)
-                strBBCode += "[b]A same direction signal[/b] - [i]Adds to a winning position[/i]" + nl;
+                strBBCode += "     A same direction signal - Adds to a winning position" + nl;
             else if (SameSignalAction == SameDirSignalAction.Nothing)
-                strBBCode += "[b]A same direction signal[/b] - [i]Does nothing[/i]" + nl;
+                strBBCode += "     A same direction signal - Does nothing" + nl;
 
             if (OppSignalAction == OppositeDirSignalAction.Close)
-                strBBCode += "[b]An opposite direction signal[/b] - [i]Closes the position[/i]" + nl;
+                strBBCode += "     An opposite direction signal - Closes the position" + nl;
             else if (OppSignalAction == OppositeDirSignalAction.Reduce)
-                strBBCode += "[b]An opposite direction signal[/b] - [i]Reduces the position[/i]" + nl;
+                strBBCode += "     An opposite direction signal - Reduces the position" + nl;
             else if (OppSignalAction == OppositeDirSignalAction.Reverse)
-                strBBCode += "[b]An opposite direction signal[/b] - [i]Reverses the position[/i]" + nl;
+                strBBCode += "     An opposite direction signal - Reverses the position" + nl;
             else
-                strBBCode += "[b]An opposite direction signal[/b] - [i]Does nothing[/i]" + nl;
+                strBBCode += "     An opposite direction signal - Does nothing" + nl;
 
-            strBBCode += "[b]Permanent Stop Loss[/b] - [i]"   + (Data.Strategy.UsePermanentSL ? (Data.Strategy.PermanentSLType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentSL.ToString() : "None") + "[/i]" + nl;
-            strBBCode += "[b]Permanent Take Profit[/b] - [i]" + (Data.Strategy.UsePermanentTP ? (Data.Strategy.PermanentTPType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentTP.ToString() : "None") + "[/i]" + nl;
-            //strBBCode += "[b]Break Even[/b] - [i]"            + (Data.Strategy.UseBreakEven   ? Data.Strategy.BreakEven.ToString()   : "None") + "[/i]" + nl;
+            strBBCode += "     Permanent Stop Loss - " + (Data.Strategy.UsePermanentSL ? (Data.Strategy.PermanentSLType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentSL.ToString() : "None") + "" + nl;
+            strBBCode += "     Permanent Take Profit - " + (Data.Strategy.UsePermanentTP ? (Data.Strategy.PermanentTPType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentTP.ToString() : "None") + "" + nl;
+            strBBCode += "     Break Even - " + (Data.Strategy.UseBreakEven ? Data.Strategy.BreakEven.ToString() : "None") + "" + nl;
             strBBCode += nl;
 
             // Add the slots.
-            foreach(IndicatorSlot indSlot in this.indicatorSlot)
+            foreach(IndicatorSlot indSlot in indicatorSlot)
             {
                 string slotTypeName;
+                string slotColor;
                 switch (indSlot.SlotType)
                 {
                     case SlotTypes.Open:
                         slotTypeName = "Opening Point of the Position";
+                        slotColor = "#693";
                         break;
                     case SlotTypes.OpenFilter:
                         slotTypeName = "Opening Logic Condition";
+                        slotColor = "#699";
                         break;
                     case SlotTypes.Close:
                         slotTypeName = "Closing Point of the Position";
+                        slotColor = "#d63";
                         break;
                     case SlotTypes.CloseFilter:
                         slotTypeName = "Closing Logic Condition";
+                        slotColor = "#d99";
                         break;
                     default:
                         slotTypeName = "";
+                        slotColor = "#000";
                         break;
                 }
 
-                strBBCode += "[b][" + slotTypeName + "][/b]" + nl;
-                strBBCode += "[b][color=blue]" + indSlot.IndicatorName + "[/color][/b]" + nl;
+                strBBCode += "[b][color=" + slotColor + "][" + slotTypeName + "][/color][/b]" + nl;
+                strBBCode += "     [b][color=blue]" + indSlot.IndicatorName + "[/color][/b]" + nl;
 
                 // Add the list params.
                 foreach (ListParam listParam in indSlot.IndParam.ListParam)
                     if (listParam.Enabled)
                     {
                         if (listParam.Caption == "Logic")
-                            strBBCode += "     [b][color=teal]" +
+                            strBBCode += "     [b][color=#066]" +
                                 (Configs.UseLogicalGroups && (indSlot.SlotType == SlotTypes.OpenFilter || indSlot.SlotType == SlotTypes.CloseFilter) ?
                                 "[" + (indSlot.LogicalGroup.Length == 1 ? " " + indSlot.LogicalGroup + " " : indSlot.LogicalGroup) + "]   " : "") + listParam.Text + "[/color][/b]" + nl;
                         else
-                            strBBCode += "     [b]" + listParam.Caption + "[/b]  -  [i]" + listParam.Text + "[/i]" + nl;
+                            strBBCode += "     " + listParam.Caption + "  -  " + listParam.Text + nl;
                     }
 
                 // Add the num params.
                 foreach(NumericParam numParam in indSlot.IndParam.NumParam)
                     if (numParam.Enabled)
-                        strBBCode += "     [b]" + numParam.Caption + "[/b]  -  [i]" + numParam.ValueToString + "[/i]" + nl;
+                        strBBCode += "     " + numParam.Caption + "  -  " + numParam.ValueToString + nl;
 
                 // Add the check params.
                 foreach(CheckParam checkParam in indSlot.IndParam.CheckParam)
                     if (checkParam.Enabled)
-                        strBBCode += "     [b]" + checkParam.Caption + "[/b]  -  [i]" + (checkParam.Checked ? "Yes" : "No") + "[/i]" + nl;
+                        strBBCode += "     " + checkParam.Caption + "  -  " + (checkParam.Checked ? "Yes" : "No") + nl;
 
                 strBBCode += nl;
             }
@@ -196,8 +203,8 @@ namespace Forex_Strategy_Builder
 
             sb.AppendLine("<h1>" + Language.T("Strategy Overview") + "</h1>");
             sb.AppendLine("<p>");
-            sb.AppendLine("\t<strong>" + Data.ProgramName + " v" + Data.ProgramVersion + stage + "</strong><br />");
             sb.AppendLine("\t" + Language.T("Strategy name") + ": <strong>" + strategyName + "</strong><br />");
+            sb.AppendLine("\t" + Data.ProgramName + " v" + Data.ProgramVersion + stage + "<br />");
             sb.AppendLine("\t" + Language.T("Date") + ": " + DateTime.Now);
             sb.AppendLine("</p>");
 
@@ -223,8 +230,7 @@ namespace Forex_Strategy_Builder
             sb.AppendLine("<h2 id=\"description\">" + Language.T("Description") + "</h2>");
             if (Description != String.Empty)
             {
-                string strStrategyDescription = Description;
-                strStrategyDescription = Description.Replace(Environment.NewLine, "<br />");
+                string strStrategyDescription = Description.Replace(Environment.NewLine, "<br />");
                 strStrategyDescription = strStrategyDescription.Replace("&", "&amp;");
                 strStrategyDescription = strStrategyDescription.Replace("\"", "&quot;");
 
@@ -712,7 +718,7 @@ namespace Forex_Strategy_Builder
             if (Data.Strategy.sameDirSignal == SameDirSignalAction.Nothing)
                 sb.AppendLine(Language.T("No averaging is allowed. Cancel any additional orders which are in the same direction."));
             else if (Data.Strategy.sameDirSignal == SameDirSignalAction.Winner)
-                sb.AppendLine(Language.T("Add to a wining position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open."));
+                sb.AppendLine(Language.T("Add to a winning position but not to a losing one. If the position is at a loss, cancel the additional entry order. Do not exceed the maximum allowed number of lots to open."));
             else if (Data.Strategy.sameDirSignal == SameDirSignalAction.Add)
                 sb.AppendLine(Language.T("Add to the position no matter if it is at a profit or loss. Do not exceed the maximum allowed number of lots to open."));
             sb.AppendLine("</li></ul>");
@@ -784,9 +790,9 @@ namespace Forex_Strategy_Builder
         {
             StringBuilder sb = new StringBuilder();
 
-            string swapUnit = (Data.InstrProperties.SwapType == Commission_Type.money ? Data.InstrProperties.PriceIn : Language.T(Data.InstrProperties.SwapType.ToString()));
+            string swapUnit   = (Data.InstrProperties.SwapType == Commission_Type.money ? Data.InstrProperties.PriceIn : Language.T(Data.InstrProperties.SwapType.ToString()));
             string commission = Language.T("Commission") + " " + Data.InstrProperties.CommissionScopeToString + " " + Data.InstrProperties.CommissionTimeToString;
-            string commUnit = (Data.InstrProperties.CommissionType == Commission_Type.money ? Data.InstrProperties.PriceIn : Language.T(Data.InstrProperties.CommissionType.ToString()));
+            string commUnit   = (Data.InstrProperties.CommissionType == Commission_Type.money ? Data.InstrProperties.PriceIn : Language.T(Data.InstrProperties.CommissionType.ToString()));
 
             sb.AppendLine("<h3>" + Language.T("Market") + "</h3>");
             sb.AppendLine("<table class=\"fsb_table_cleen\" cellspacing=\"0\">");
@@ -796,18 +802,18 @@ namespace Forex_Strategy_Builder
 
             sb.AppendLine("<h3>" + Language.T("Account") + "</h3>");
             sb.AppendLine("<table class=\"fsb_table_cleen\" cellspacing=\"0\">");
-            sb.AppendLine("<tr><td>" + Language.T("Initial account") + "</td><td> - " + Configs.InitialAccount.ToString("F2") + " " + Configs.AccountCurrency + "</td></tr>");
-            sb.AppendLine("<tr><td>" + Language.T("Lot size")        + "</td><td> - "   + Data.InstrProperties.LotSize.ToString() + "</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Initial account") + "</td><td> - "   + Configs.InitialAccount.ToString("F2") + " " + Configs.AccountCurrency + "</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Lot size")        + "</td><td> - "   + Data.InstrProperties.LotSize + "</td></tr>");
             sb.AppendLine("<tr><td>" + Language.T("Leverage")        + "</td><td> - 1/" + Configs.Leverage + "</td></tr>");
-            sb.AppendLine("<tr><td>" + Language.T("Required margin") + "</td><td> - " + Backtester.RequiredMargin(1, Data.Bars - 1).ToString("F2") + " " + Configs.AccountCurrency + "* " + Language.T("for each open lot") + "</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Required margin") + "</td><td> - "   + Backtester.RequiredMargin(1, Data.Bars - 1).ToString("F2") + " " + Configs.AccountCurrency + "* " + Language.T("for each open lot") + "</td></tr>");
             sb.AppendLine("</table>");
 
             sb.AppendLine("<h3>" + Language.T("Charges") + "</h3>");
             sb.AppendLine("<table class=\"fsb_table_cleen\" cellspacing=\"0\">");
-            sb.AppendLine("<tr><td>" + Language.T("Spread") + "</td><td> - " + Plural("pip", Data.InstrProperties.Spread) + "</td><td>(" + Backtester.PipsToMoney(Data.InstrProperties.Spread, Data.Bars - 1).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
-            sb.AppendLine("<tr><td>" + Language.T("Swap number for a long position rollover")  + "</td><td> - " + Data.InstrProperties.SwapLong.ToString()  + " " + swapUnit + "</td><td>(" + Backtester.RolloverInMoney(PosDirection.Long,  1, 1, Data.Close[Data.Bars - 1]).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
-            sb.AppendLine("<tr><td>" + Language.T("Swap number for a short position rollover") + "</td><td> - " + Data.InstrProperties.SwapShort.ToString() + " " + swapUnit + "</td><td>(" + Backtester.RolloverInMoney(PosDirection.Short, 1, 1, Data.Close[Data.Bars - 1]).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
-            sb.AppendLine("<tr><td>" + commission + "</td><td> - " + Data.InstrProperties.Commission.ToString() + " " + commUnit + "</td><td>(" + Backtester.CommissionInMoney(1, Data.Close[Data.Bars-1], false).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Spread") + "</td><td> - " + Data.InstrProperties.Spread.ToString("F2") + " " + Language.T("pips") + "</td><td>(" + Backtester.PipsToMoney(Data.InstrProperties.Spread, Data.Bars - 1).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Swap number for a long position rollover")  + "</td><td> - " + Data.InstrProperties.SwapLong.ToString("F2")  + " " + swapUnit + "</td><td>(" + Backtester.RolloverInMoney(PosDirection.Long,  1, 1, Data.Close[Data.Bars - 1]).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Swap number for a short position rollover") + "</td><td> - " + Data.InstrProperties.SwapShort.ToString("F2") + " " + swapUnit + "</td><td>(" + Backtester.RolloverInMoney(PosDirection.Short, 1, 1, Data.Close[Data.Bars - 1]).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
+            sb.AppendLine("<tr><td>" + commission + "</td><td> - " + Data.InstrProperties.Commission.ToString("F2") + " " + commUnit + "</td><td>(" + Backtester.CommissionInMoney(1, Data.Close[Data.Bars-1], false).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
             sb.AppendLine("<tr><td>" + Language.T("Slippage") + "</td><td> - " + Plural("pip", Data.InstrProperties.Slippage) + "</td><td>(" + Backtester.PipsToMoney(Data.InstrProperties.Slippage, Data.Bars - 1).ToString("F2") + " " + Configs.AccountCurrency + "*)</td></tr>");
             sb.AppendLine("</table>");
 
@@ -852,17 +858,21 @@ namespace Forex_Strategy_Builder
 
             sb.AppendLine("<table cellspacing=\"0\">");
             string sTradingUnit = UseAccountPercentEntry ? Language.T("% of the account equity") : "";
-            sb.AppendLine("<tr><td>" + Language.T("Maximum number of open lots")                    + "</td><td> - " + MaxOpenLots + "</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Maximum number of open lots")                    + "</td><td> - " + MaxOpenLots  + "</td></tr>");
             sb.AppendLine("<tr><td>" + Language.T("Number of entry lots for a new position")        + "</td><td> - " + EntryLots    + sTradingUnit + "</td></tr>");
             sb.AppendLine("<tr><td>" + Language.T("In case of addition - number of lots to add")    + "</td><td> - " + AddingLots   + sTradingUnit + "</td></tr>");
             sb.AppendLine("<tr><td>" + Language.T("In case of reduction - number of lots to close") + "</td><td> - " + ReducingLots + sTradingUnit + "</td></tr>");
             sb.AppendLine("</table>");
 
             sb.AppendLine("<h3>" + Language.T("Permanent Protection") + "</h3>");
-            string sPermSL = Data.Strategy.UsePermanentSL ? (Data.Strategy.PermanentSLType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentSL.ToString() + " " + Language.T("pips") : "- " + Language.T("None");
-            sb.AppendLine("<p>" + Language.T("Permanent Stop Loss") + " " + sPermSL + "</p>");
-            string sPermTP = Data.Strategy.UsePermanentTP ? (Data.Strategy.PermanentTPType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentTP.ToString() + " " + Language.T("pips") : "- " + Language.T("None");
-            sb.AppendLine("<p>" + Language.T("Permanent Take Profit") + " " + sPermTP + "</p>");
+            string permSL  = Data.Strategy.UsePermanentSL ? (Data.Strategy.PermanentSLType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentSL + " " + Language.T("pips") : "- " + Language.T("None");
+            string permTP  = Data.Strategy.UsePermanentTP ? (Data.Strategy.PermanentTPType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentTP + " " + Language.T("pips") : "- " + Language.T("None");
+            string brkEven = Data.Strategy.UseBreakEven   ? Data.Strategy.BreakEven + " " + Language.T("pips") : "- " + Language.T("None");
+            sb.AppendLine("<table cellspacing=\"0\">");
+            sb.AppendLine("<tr><td>" + Language.T("Permanent Stop Loss")   + "</td><td>" + permSL  + "</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Permanent Take Profit") + "</td><td>" + permTP  + "</td></tr>");
+            sb.AppendLine("<tr><td>" + Language.T("Break Even")            + "</td><td>" + brkEven + "</td></tr>");
+            sb.AppendLine("</table>");
 
             return sb;
         }
@@ -877,15 +887,17 @@ namespace Forex_Strategy_Builder
             // Strategy Properties
             string sameDir = Language.T(Data.Strategy.SameSignalAction.ToString());
             string oppDir  = Language.T(Data.Strategy.OppSignalAction.ToString());
-            string permaSL = Data.Strategy.UsePermanentSL ? (Data.Strategy.PermanentSLType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentSL.ToString() : Language.T("None");
-            string permaTP = Data.Strategy.UsePermanentTP ? (Data.Strategy.PermanentTPType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentTP.ToString() : Language.T("None");
+            string permSL  = Data.Strategy.UsePermanentSL ? (Data.Strategy.PermanentSLType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentSL : Language.T("None");
+            string permTP  = Data.Strategy.UsePermanentTP ? (Data.Strategy.PermanentTPType == PermanentProtectionType.Absolute ? "(Abs) " : "") + Data.Strategy.PermanentTP : Language.T("None");
+            string brkEven = Data.Strategy.UseBreakEven ? Data.Strategy.BreakEven.ToString() : Language.T("None");
             sb.AppendLine("<div class=\"fsb_strategy_slot\" style=\"border: solid 2px #966\">");
             sb.AppendLine("\t<div class=\"fsb_properties_slot\">" + Language.T("Strategy Properties") + "</div>");
             sb.AppendLine("\t<table style=\"margin-left: auto; margin-right: auto;\">");
-            sb.AppendLine("\t\t<tr><td>" + Language.T("Same direction signal")     + "</td><td> - " + sameDir + "</td></tr>");
-            sb.AppendLine("\t\t<tr><td>" + Language.T("Opposite direction signal") + "</td><td> - " + oppDir  + "</td></tr>");
-            sb.AppendLine("\t\t<tr><td>" + Language.T("Permanent Stop Loss")       + "</td><td> - " + permaSL + "</td></tr>");
-            sb.AppendLine("\t\t<tr><td>" + Language.T("Permanent Take Profit")     + "</td><td> - " + permaTP + "</td></tr>");
+            sb.AppendLine("\t\t<tr><td>" + Language.T("Same direction signal")     + "</td><td> - " + sameDir   + "</td></tr>");
+            sb.AppendLine("\t\t<tr><td>" + Language.T("Opposite direction signal") + "</td><td> - " + oppDir    + "</td></tr>");
+            sb.AppendLine("\t\t<tr><td>" + Language.T("Permanent Stop Loss")       + "</td><td> - " + permSL    + "</td></tr>");
+            sb.AppendLine("\t\t<tr><td>" + Language.T("Permanent Take Profit")     + "</td><td> - " + permTP    + "</td></tr>");
+            sb.AppendLine("\t\t<tr><td>" + Language.T("Break Even")                + "</td><td> - " + brkEven   + "</td></tr>");
             sb.AppendLine("\t</table>");
             sb.AppendLine("</div>");
 
@@ -1016,28 +1028,31 @@ namespace Forex_Strategy_Builder
         /// </summary>
         public override string ToString()
         {
+            string nl = Environment.NewLine;
             string str = String.Empty;
-            str += "Strategy Name - "       + strategyName              + Environment.NewLine;
-            str += "Symbol - "              + Symbol                    + Environment.NewLine;
-            str += "Period - "              + DataPeriod.ToString()     + Environment.NewLine;
-            str += "Same dir signal - "     + sameDirSignal.ToString()  + Environment.NewLine;
-            str += "Opposite dir signal - " + oppDirSignal.ToString()   + Environment.NewLine;
-            str += "Use account % entry - " + UseAccountPercentEntry    + Environment.NewLine;
-            str += "Max open lots - "       + MaxOpenLots               + Environment.NewLine;
-            str += "Entry lots - "          + EntryLots                 + Environment.NewLine;
-            str += "Adding lots - "         + AddingLots                + Environment.NewLine;
-            str += "Reducing lots - "       + ReducingLots              + Environment.NewLine;
-            str += "Use Permanent S/L - "   + usePermanentSL.ToString() + Environment.NewLine;
-            str += "Permanent S/L - "       + permanentSLType.ToString() + " " + permanentSL.ToString()    + Environment.NewLine;
-            str += "Use Permanent T/P - "   + usePermanentTP.ToString() + Environment.NewLine;
-            str += "Permanent T/P - "       + permanentTPType.ToString() + " " + permanentTP.ToString()    + Environment.NewLine + Environment.NewLine;
-            str += "Description"            + Environment.NewLine + Description + Environment.NewLine + Environment.NewLine;
+            str += "Strategy Name - "       + strategyName    + nl;
+            str += "Symbol - "              + Symbol          + nl;
+            str += "Period - "              + DataPeriod      + nl;
+            str += "Same dir signal - "     + sameDirSignal   + nl;
+            str += "Opposite dir signal - " + oppDirSignal    + nl;
+            str += "Use account % entry - " + UseAccountPercentEntry + nl;
+            str += "Max open lots - "       + MaxOpenLots     + nl;
+            str += "Entry lots - "          + EntryLots       + nl;
+            str += "Adding lots - "         + AddingLots      + nl;
+            str += "Reducing lots - "       + ReducingLots    + nl;
+            str += "Use Permanent S/L - "   + usePermanentSL  + nl;
+            str += "Permanent S/L - "       + permanentSLType + " " + permanentSL + nl;
+            str += "Use Permanent T/P - "   + usePermanentTP  + nl;
+            str += "Permanent T/P - "       + permanentTPType + " " + permanentTP + nl;
+            str += "Use Break Even - "      + useBreakEven    + nl;
+            str += "Break Even - "          + breakEven       + nl + nl;
+            str += "Description:"      + nl + Description     + nl + nl;
 
             for (int slot = 0; slot < Slots; slot++)
             {
-                str += Slot[slot].SlotType.ToString() + Environment.NewLine;
-                str += Slot[slot].IndicatorName + Environment.NewLine;
-                str += indicatorSlot[slot].IndParam.ToString() + Environment.NewLine + Environment.NewLine;
+                str += Slot[slot].SlotType + nl;
+                str += Slot[slot].IndicatorName + nl;
+                str += indicatorSlot[slot].IndParam  + nl + nl;
             }
 
             return str;
@@ -1051,7 +1066,7 @@ namespace Forex_Strategy_Builder
             if (number != 1 && number != -1)
                 unit += "s";
 
-            return number.ToString() + " " + Language.T(unit);
+            return number + " " + Language.T(unit);
         }
     }
 }

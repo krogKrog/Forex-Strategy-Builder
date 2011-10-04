@@ -423,7 +423,7 @@ namespace Forex_Strategy_Builder
 
             ToolStripMenuItem miQuickScan = new ToolStripMenuItem();
             miQuickScan.Text         = Language.T("Quick Scan");
-            miQuickScan.ToolTipText  = Language.T("Perform quick intrabar scanning.");
+            miQuickScan.ToolTipText  = Language.T("Perform quick intrabar scan.");
             miQuickScan.Image        = Properties.Resources.fast_scan;
             miQuickScan.ShortcutKeys = Keys.F6;
             miQuickScan.Click       += new EventHandler(MenuQuickScan_OnClick);
@@ -588,7 +588,7 @@ namespace Forex_Strategy_Builder
             miAdditionalStats.Text         = Language.T("Additional Statistics");
             miAdditionalStats.Checked      = Configs.AdditionalStatistics;
             miAdditionalStats.CheckOnClick = true;
-            miAdditionalStats.ToolTipText  = Language.T("Show long/short balance lines in the chart and more statistics in the overview.");
+            miAdditionalStats.ToolTipText  = Language.T("Show long/short balance lines on the chart and more statistics in the overview.");
             miAdditionalStats.Click       += new EventHandler(AdditionalStats_OnClick);
             miTesting.DropDownItems.Add(miAdditionalStats);
 
@@ -631,7 +631,7 @@ namespace Forex_Strategy_Builder
             ToolStripMenuItem miScanner = new ToolStripMenuItem();
             miScanner.Name        = "Scanner";
             miScanner.Text        = Language.T("Scanner") + "...";
-            miScanner.ToolTipText = Language.T("Perform a deep intrabar scanning.");
+            miScanner.ToolTipText = Language.T("Perform a deep intrabar scan.");
             miScanner.Image       = Properties.Resources.scanner;
             miScanner.Click      += new EventHandler(MenuTools_OnClick);
             miTools.DropDownItems.Add(miScanner);
@@ -791,7 +791,7 @@ namespace Forex_Strategy_Builder
             ToolStripMenuItem miResetConfigs = new ToolStripMenuItem();
             miResetConfigs.Name        = "Reset settings";
             miResetConfigs.Text        = Language.T("Reset Settings");
-            miResetConfigs.ToolTipText = Language.T("Reset the program settings to their default values. You need to restart!");
+            miResetConfigs.ToolTipText = Language.T("Reset the program settings to their default values. You will need to restart!");
             miResetConfigs.Image       = Properties.Resources.warning;
             miResetConfigs.Click      += new EventHandler(MenuTools_OnClick);
             miTools.DropDownItems.Add(miResetConfigs);
@@ -836,6 +836,13 @@ namespace Forex_Strategy_Builder
             miHelpDonateNow.Click      += new EventHandler(MenuHelpContentsOnClick);
             miHelp.DropDownItems.Add(miHelpDonateNow);
 
+            ToolStripMenuItem miUsageStats = new ToolStripMenuItem();
+            miUsageStats.Text    = Language.T("Send anonymous usage statistics");
+            miUsageStats.Checked = Configs.SendUsageStats;
+            miUsageStats.CheckOnClick = true;
+            miUsageStats.Click += new EventHandler(MenuUsageStats_OnClick);
+            miHelp.DropDownItems.Add(miUsageStats);
+
             miHelp.DropDownItems.Add(new ToolStripSeparator());
 
             ToolStripMenuItem miHelpUpdates = new ToolStripMenuItem();
@@ -865,40 +872,10 @@ namespace Forex_Strategy_Builder
             // Forex
             miForex = new ToolStripMenuItem(Language.T("Forex"));
 
-            ToolStripMenuItem miEconomicCalendar = new ToolStripMenuItem();
-            miEconomicCalendar.Text   = Language.T("Economic Calendar") + "...";
-            miEconomicCalendar.Image  = Properties.Resources._1day;
-            miEconomicCalendar.Tag    = "http://forexsb.com/pages/calendar.html";
-            miEconomicCalendar.Click += new EventHandler(MenuForexContentsOnClick);
-            miForex.DropDownItems.Add(miEconomicCalendar);
-
-            ToolStripMenuItem miMarketCommentary = new ToolStripMenuItem();
-            miMarketCommentary.Text   = Language.T("Market Commentary") + "...";
-            miMarketCommentary.Image  = Properties.Resources.pie;
-            miMarketCommentary.Tag    = "http://forexsb.com/pages/commentary.html";
-            miMarketCommentary.Click += new EventHandler(MenuForexContentsOnClick);
-            miForex.DropDownItems.Add(miMarketCommentary);
-
-            ToolStripMenuItem miForexDailyOutlook = new ToolStripMenuItem();
-            miForexDailyOutlook.Text   = Language.T("Daily Forex Outlook") + "...";
-            miForexDailyOutlook.Image  = Properties.Resources.fx_overview;
-            miForexDailyOutlook.Tag    = "http://forexsb.com/pages/daily-outlook.html";
-            miForexDailyOutlook.Click += new EventHandler(MenuForexContentsOnClick);
-            miForex.DropDownItems.Add(miForexDailyOutlook);
-
-            ToolStripMenuItem miForexWeeklyOutlook = new ToolStripMenuItem();
-            miForexWeeklyOutlook.Text   = Language.T("Weekly Forex Outlook") + "...";
-            miForexWeeklyOutlook.Image  = Properties.Resources.fx_overview;
-            miForexWeeklyOutlook.Tag    = "http://forexsb.com/pages/weekly-outlook.html";
-            miForexWeeklyOutlook.Click += new EventHandler(MenuForexContentsOnClick);
-            miForex.DropDownItems.Add(miForexWeeklyOutlook);
-
-            miForex.DropDownItems.Add(new ToolStripSeparator());
-
             ToolStripMenuItem miForexBrokers = new ToolStripMenuItem();
             miForexBrokers.Text   = Language.T("Forex Brokers") + "...";
             miForexBrokers.Image  = Properties.Resources.forex_brokers;
-            miForexBrokers.Tag    = "http://forexsb.com/wiki/brokers";
+            miForexBrokers.Tag    = "http://forexsb.com/forex-brokers/";
             miForexBrokers.Click += new EventHandler(MenuForexContentsOnClick);
 
             miForex.DropDownItems.Add(miForexBrokers);
@@ -946,6 +923,14 @@ namespace Forex_Strategy_Builder
             sbpChartInfo.BorderStyle = Border3DStyle.Raised;
             sbpChartInfo.Spring      = true;
             statusStrip.Items.Add(sbpChartInfo);
+
+#if DEBUG
+            statusStrip.Items.Add(new ToolStripSeparator());
+            ToolStripStatusLabel lblDebug = new ToolStripStatusLabel();
+            lblDebug.ForeColor = Color.LightCoral;
+            lblDebug.Text = "[Debug]";
+            statusStrip.Items.Add(lblDebug);
+#endif
 
             statusStrip.Items.Add(new ToolStripSeparator());
 
@@ -1426,12 +1411,23 @@ namespace Forex_Strategy_Builder
         }
 
         /// <summary>
-        /// Menu miHelpNewBeta  click
+        /// Menu miHelpNewBeta click
         /// </summary>
         protected virtual void MenuHelpNewBeta_OnClick(object sender, EventArgs e)
         {
             ToolStripMenuItem mi = (ToolStripMenuItem)sender;
             Configs.CheckForNewBeta = mi.Checked;
+
+            return;
+        }
+
+        /// <summary>
+        /// Menu UsageStatistics click
+        /// </summary>
+        protected virtual void MenuUsageStats_OnClick(object sender, EventArgs e)
+        {
+            ToolStripMenuItem mi = (ToolStripMenuItem)sender;
+            Configs.SendUsageStats = mi.Checked;
 
             return;
         }

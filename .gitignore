@@ -1,12 +1,16 @@
 Thumbs.db
+/*ReSharper*
 /*.suo
 /*.sln.docstates
 /obj
 /bin/*.exe
+/bin/fsb-padfile.xml
 /bin/Debug/*.exe
 /bin/Debug/*.config
 /bin/Debug/*.pdb
 /bin/Debug/*.manifest
+/bin/Debug/System/config.xml
+/bin/Debug/System/fsb-update.xml
 /bin/Debug/Strategies/*.csv
 /bin/Forex\ Strategy\ Builder/*.exe
 !/bin/Forex\ Strategy\ Builder/FSB\ Starter.exe
@@ -14,3 +18,5 @@ Thumbs.db
 /bin/Forex\ Strategy\ Builder/*.pdb
 /bin/Forex\ Strategy\ Builder/*.manifest
 /bin/Forex\ Strategy\ Builder/Strategies/*.csv
+/bin/Forex\ Strategy\ Builder/System/config.xml
+/bin/Forex\ Strategy\ Builder/System/fsb-update.xml
