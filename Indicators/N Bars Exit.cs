@@ -80,8 +80,13 @@ namespace Forex_Strategy_Builder
         {
             int nExit = (int)IndParam.NumParam[0].Value;
 
+<<<<<<< HEAD
             ExitFilterLongDescription  = nExit + " bars passed after the entry";
             ExitFilterShortDescription = nExit + " bars passed after the entry";
+=======
+            ExitFilterLongDescription  = iNExit.ToString() + " bars passed after the entry";
+            ExitFilterShortDescription = iNExit.ToString() + " bars passed after the entry";
+>>>>>>> 437d4c07bba867a25dc19a279e53fd5bf014f8b6
 
             return;
         }
