@@ -230,6 +230,11 @@ namespace Forex_Strategy_Builder
                 smallBalanceChart.SetChartData();
                 smallBalanceChart.InitChart();
                 smallBalanceChart.Invalidate();
+
+                smallHistogramChart.SetChartData();
+                smallHistogramChart.InitChart();
+                smallHistogramChart.Invalidate();
+
                 SetupJournal();
                 infpnlAccountStatistics.Update(Backtester.AccountStatsParam, Backtester.AccountStatsValue,
                                                Backtester.AccountStatsFlags, Language.T("Account Statistics"));
@@ -269,6 +274,11 @@ namespace Forex_Strategy_Builder
                 smallBalanceChart.SetChartData();
                 smallBalanceChart.InitChart();
                 smallBalanceChart.Invalidate();
+
+                smallHistogramChart.SetChartData();
+                smallHistogramChart.InitChart();
+                smallHistogramChart.Invalidate();
+
                 SetupJournal();
                 infpnlAccountStatistics.Update(Backtester.AccountStatsParam, Backtester.AccountStatsValue,
                                                Backtester.AccountStatsFlags, Language.T("Account Statistics"));
@@ -881,6 +891,11 @@ namespace Forex_Strategy_Builder
             smallBalanceChart.SetChartData();
             smallBalanceChart.InitChart();
             smallBalanceChart.Invalidate();
+
+            smallHistogramChart.SetChartData();
+            smallHistogramChart.InitChart();
+            smallHistogramChart.Invalidate();
+
             SetupJournal();
             infpnlAccountStatistics.Update(
                 Backtester.AccountStatsParam,
@@ -1131,6 +1146,11 @@ namespace Forex_Strategy_Builder
             smallBalanceChart.SetChartData();
             smallBalanceChart.InitChart();
             smallBalanceChart.Invalidate();
+
+            smallHistogramChart.SetChartData();
+            smallHistogramChart.InitChart();
+            smallHistogramChart.Invalidate();
+
             SetupJournal();
         }
 
@@ -1149,6 +1169,11 @@ namespace Forex_Strategy_Builder
             smallBalanceChart.SetChartData();
             smallBalanceChart.InitChart();
             smallBalanceChart.Invalidate();
+
+            smallHistogramChart.SetChartData();
+            smallHistogramChart.InitChart();
+            smallHistogramChart.Invalidate();
+
             SetupJournal();
         }
 
@@ -1346,6 +1371,10 @@ namespace Forex_Strategy_Builder
                 smallIndicatorChart.InitChart();
                 smallBalanceChart.SetChartData();
                 smallBalanceChart.InitChart();
+
+                smallHistogramChart.SetChartData();
+                smallHistogramChart.InitChart();
+
                 SetupJournal();
                 pnlWorkspace.Invalidate(true);
             }
