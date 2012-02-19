@@ -1,4 +1,4 @@
-// Small Histogram Chart
+﻿// Small Histogram Chart
 // Part of Forex Strategy Builder
 // Website http://forexsb.com/
 // Copyright (c) 2006 - 2011 Miroslav Popov - All rights reserved.
@@ -10,11 +10,14 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 
-namespace Forex_Strategy_Builder {
+
+namespace Forex_Strategy_Builder
+{
     /// <summary>
     /// Draws a small histogram chart
     /// </summary>
-    public class Small_Histogram_Chart : Panel {
+    public class Small_Histogram_Chart : Panel
+    {
         int space = 5;
         int border = 2;
 
@@ -55,6 +58,7 @@ namespace Forex_Strategy_Builder {
         Font font;
         float captionHeight;
         RectangleF rectfCaption;
+        RectangleF rectfButtonBar;
         StringFormat stringFormatCaption;
         Brush brushFore;
         Pen penGrid;
@@ -120,16 +124,17 @@ namespace Forex_Strategy_Builder {
 
 
         /// <summary>
-        /// Transforms input arrays into histogram data
+        /// Fills array parameters with histogram data
         /// </summary>
-        public static void GetHistogramDataInts(out int[] results, out int[] indexes, out int[] counts, out int[] cumulatives) {
+        public void GetHistogramDataInts (out int[] results, out int[] indexes, out int[] counts, out int[] cumulatives){
             getHistogramDataInts(out results, out indexes, out counts, out cumulatives);
         }
 
         /// <summary>
         /// Get Data to draw in histogram
         /// </summary>
-        private static void getHistogramDataInts(out int[] results, out int[] indexes, out int[] counts, out int[] cumulatives) {
+        private void getHistogramDataInts (out int[] results, out int[] indexes, out int[] counts, out int[] cumulatives)
+        {
             // crummy way to get number of trades for init array
             // TBD -- find better property
             int ctr = 0;
@@ -137,7 +142,10 @@ namespace Forex_Strategy_Builder {
             int max = 0;
             for (int iPos = 0; iPos < Backtester.PositionsTotal; iPos++) {
                 Position position = Backtester.PosFromNumb(iPos);
-                if (position.Transaction == Transaction.Close) {
+                if (position.Transaction == Transaction.Close ||
+                    position.Transaction == Transaction.Reverse ||
+                    position.Transaction == Transaction.Reduce) 
+                {
                     ctr++;
                 }
             }
@@ -146,7 +154,10 @@ namespace Forex_Strategy_Builder {
             ctr = 0;
             for (int iPos = 0; iPos < Backtester.PositionsTotal; iPos++) {
                 Position position = Backtester.PosFromNumb(iPos);
-                if (position.Transaction == Transaction.Close) {
+                if (position.Transaction == Transaction.Close ||
+                    position.Transaction == Transaction.Reverse ||
+                    position.Transaction == Transaction.Reduce) 
+                {
                     results[ctr] = (int)(position.ProfitLoss);
                     ctr++;
                 }
@@ -197,7 +208,8 @@ namespace Forex_Strategy_Builder {
         /// <summary>
         /// Sets chart's instrument and back testing data.
         /// </summary>
-        public void SetChartData() {
+        public void SetChartData()
+        {
             isNotPaint = !Data.IsData || !Data.IsResult || Data.Bars <= Data.FirstBar;
 
             if (isNotPaint) return;
@@ -237,12 +249,13 @@ namespace Forex_Strategy_Builder {
         /// <summary>
         /// Sets the chart params
         /// </summary>
-        public void InitChart() {
+        public void InitChart()
+        {
             // Tool Tips
             toolTip = new ToolTip();
 
             // Chart Title
-            strChartTitle                     = Language.T("Histogram Chart");
+            strChartTitle                     = Language.T("Trade Distribution Chart");
             font                              = new Font(Font.FontFamily, 9);
             captionHeight                     = (float)Math.Max(font.Height, 18);
             rectfCaption                      = new RectangleF(0, 0, ClientSize.Width, captionHeight);
@@ -252,6 +265,9 @@ namespace Forex_Strategy_Builder {
             stringFormatCaption.Trimming      = StringTrimming.EllipsisCharacter;
             stringFormatCaption.FormatFlags   = StringFormatFlags.NoWrap;
 
+            // Button Bar
+            rectfButtonBar = new RectangleF(0, rectfCaption.Bottom, ClientSize.Width, captionHeight);
+
             // Button Toggle View between counts and total cumulative amounts
             btnToggleView                         = new Button();
             btnToggleView.Parent                  = this;
@@ -259,6 +275,7 @@ namespace Forex_Strategy_Builder {
             btnToggleView.BackgroundImageLayout   = ImageLayout.Center;
             btnToggleView.Cursor                  = Cursors.Hand;
             btnToggleView.Size                    = new Size(20, font.Height);
+            btnToggleView.Location = new Point(space, (int)(rectfButtonBar.Y + ((rectfButtonBar.Height - btnToggleView.Height) / 2)));
             btnToggleView.UseVisualStyleBackColor = true;
             btnToggleView.Click                  += new EventHandler(BtnToggleView_Click);
             toolTip.SetToolTip(btnToggleView, Language.T("Toggle between Trade Counts and Cumulative Amounts"));
@@ -296,7 +313,8 @@ namespace Forex_Strategy_Builder {
 
             if (isNotPaint) return;
 
-            YTop    = (int)captionHeight + 2 * space + 1;
+            // *2 for button bar
+            YTop = (2 * (int)captionHeight) + 2 * space + 1;
             YBottom = ClientSize.Height - 2 * space - 1 - border;
             XAxis_Y = YBottom - 3 - font.Height;
 
@@ -341,12 +359,16 @@ namespace Forex_Strategy_Builder {
         /// <summary>
         /// Paints the chart
         /// </summary>
-        protected override void OnPaint(PaintEventArgs e) {
+        protected override void OnPaint(PaintEventArgs e)
+        {
             Graphics g = e.Graphics;
 
             // Caption bar
             Data.GradientPaint(g, rectfCaption, LayoutColors.ColorCaptionBack, LayoutColors.DepthCaption);
             g.DrawString(strChartTitle, Font, new SolidBrush(LayoutColors.ColorCaptionText), rectfCaption, stringFormatCaption);
+
+            // Button Bar
+            Data.GradientPaint(g, rectfButtonBar, LayoutColors.ColorCaptionBack, LayoutColors.DepthCaption);
 
             // Border
             g.DrawLine(penBorder, 1, captionHeight, 1, ClientSize.Height);
@@ -354,7 +376,8 @@ namespace Forex_Strategy_Builder {
             g.DrawLine(penBorder, 0, ClientSize.Height - border + 1, ClientSize.Width, ClientSize.Height - border + 1);
 
             // Paints the background by gradient
-            RectangleF rectField = new RectangleF(border, captionHeight, ClientSize.Width - 2 * border, ClientSize.Height - captionHeight - border);
+            // *2 for button bar
+            RectangleF rectField = new RectangleF(border, captionHeight*2, ClientSize.Width - 2 * border, ClientSize.Height - captionHeight - border);
             Data.GradientPaint(g, rectField, LayoutColors.ColorChartBack, LayoutColors.DepthControl);
 
             if (isNotPaint) return;
@@ -368,7 +391,8 @@ namespace Forex_Strategy_Builder {
                 }
             }
 
-            for (int label = YAxisMin; label <= YAxisMax; label += stepY) {
+            for (int label = YAxisMin; label <= YAxisMax; label += stepY)
+            {
                 int labelY = (int)(XAxis_Y - (label - YAxisMin) * YScale);
                 if (label > -1) {
                     g.DrawString(label.ToString(), Font, brushFore, XRight, labelY - Font.Height / 2 - 1);
@@ -408,7 +432,8 @@ namespace Forex_Strategy_Builder {
         /// Generates dynamic info on the status bar
         /// when we are Moving the mouse over the SmallBalanceChart.
         /// </summary>
-        protected override void OnMouseMove(MouseEventArgs e) {
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
             base.OnMouseMove(e);
 
             if (!isShowDynamicInfo || !Data.IsData || !Data.IsResult) return;
@@ -482,7 +507,8 @@ namespace Forex_Strategy_Builder {
         /// <summary>
         /// Invalidates the chart after resizing
         /// </summary>
-        protected override void OnResize(EventArgs eventargs) {
+        protected override void OnResize(EventArgs eventargs)
+        {
             InitChart();
             Invalidate();
         }

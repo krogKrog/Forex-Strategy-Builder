@@ -12,12 +12,12 @@ using System.Windows.Forms;
 using Forex_Strategy_Builder.Common;
 using Forex_Strategy_Builder.Dialogs.Optimizer;
 
-namespace Forex_Strategy_Builder
+namespace Forex_Strategy_Builder 
 {
     /// <summary>
     /// Class Actions : Controls
     /// </summary>
-    public partial class Actions : Controls
+    public partial class Actions : Controls 
     {
         bool isDiscardSelectedIndexChange = false;
 
@@ -25,7 +25,7 @@ namespace Forex_Strategy_Builder
         /// The starting point of the application
         /// </summary>
         [STAThreadAttribute]
-        public static void Main()
+        public static void Main() 
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -48,14 +48,14 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// The default constructor
         /// </summary>
-        public Actions()
+        public Actions() 
         {
-            StartPosition     = FormStartPosition.CenterScreen;
-            Size              = GetFormSize();
-            MinimumSize       = new Size(500, 375);
-            Icon              = Data.Icon;
-            Text              = Data.ProgramName;
-            FormClosing      += new FormClosingEventHandler(Actions_FormClosing);
+            StartPosition = FormStartPosition.CenterScreen;
+            Size = GetFormSize();
+            MinimumSize = new Size(500, 375);
+            Icon = Data.Icon;
+            Text = Data.ProgramName;
+            FormClosing += new FormClosingEventHandler(Actions_FormClosing);
             Application.Idle += new EventHandler(Application_Idle);
 
             // Load a data file
@@ -119,12 +119,11 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Gets the starting size of the main screen.
         /// </summary>
-        Size GetFormSize()
-        {
-            int width  = Math.Min(Configs.MainScreenWidth,  SystemInformation.MaxWindowTrackSize.Width);
+        Size GetFormSize() {
+            int width = Math.Min(Configs.MainScreenWidth, SystemInformation.MaxWindowTrackSize.Width);
             int height = Math.Min(Configs.MainScreenHeight, SystemInformation.MaxWindowTrackSize.Height);
-            
-            return new Size(width,height);
+
+            return new Size(width, height);
         }
 
         /// <summary>
@@ -188,7 +187,7 @@ namespace Forex_Strategy_Builder
                     if (Data.LoadedSavedStrategy != "")
                     {
                         string strategyPath = Path.GetDirectoryName(Data.LoadedSavedStrategy) + Path.DirectorySeparatorChar;
-                        string defaultPath  = Path.Combine(Data.ProgramDir, Data.DefaultStrategyDir);
+                        string defaultPath = Path.Combine(Data.ProgramDir, Data.DefaultStrategyDir);
                         if (strategyPath == defaultPath)
                             Data.LoadedSavedStrategy = Path.GetFileName(Data.LoadedSavedStrategy);
                     }
@@ -196,7 +195,7 @@ namespace Forex_Strategy_Builder
                 }
 
                 WindowState = FormWindowState.Normal;
-                Configs.MainScreenWidth  = this.Width;
+                Configs.MainScreenWidth = this.Width;
                 Configs.MainScreenHeight = this.Height;
 
                 Configs.SaveConfigs();
@@ -210,7 +209,7 @@ namespace Forex_Strategy_Builder
             return;
         }
 
-// ---------------------------------------------------------- //
+        // ---------------------------------------------------------- //
 
         /// <summary>
         /// Edits the Strategy Properties Slot
@@ -223,8 +222,8 @@ namespace Forex_Strategy_Builder
             Strategy_Properties strategyProperties = new Strategy_Properties();
             strategyProperties.ShowDialog();
 
-            if (strategyProperties.DialogResult == DialogResult.OK)
-            {
+            if (strategyProperties.DialogResult == DialogResult.OK) 
+			{
                 StatsBuffer.UpdateStatsBuffer();
 
                 this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + "* - " + Data.ProgramName;
@@ -267,8 +266,8 @@ namespace Forex_Strategy_Builder
             Indicator_Dialog indicatorDialog = new Indicator_Dialog(slot, slotType, isSlotExist);
             indicatorDialog.ShowDialog();
 
-            if (indicatorDialog.DialogResult == DialogResult.OK)
-            {
+            if (indicatorDialog.DialogResult == DialogResult.OK) 
+			{
                 StatsBuffer.UpdateStatsBuffer();
 
                 this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + "* - " + Data.ProgramName;
@@ -389,16 +388,13 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Undoes the strategy
         /// </summary>
-        void UndoStrategy()
-        {
-            if (Data.StackStrategy.Count <= 1)
-            {
+        void UndoStrategy() {
+            if (Data.StackStrategy.Count <= 1) {
                 this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + " - " + Data.ProgramName;
                 Data.IsStrategyChanged = false;
             }
 
-            if (Data.StackStrategy.Count > 0)
-            {
+            if (Data.StackStrategy.Count > 0) {
                 Data.Strategy = Data.StackStrategy.Pop();
 
                 RebuildStrategyLayout();
@@ -411,16 +407,13 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Performs actions when UPBV has been changed
         /// </summary>
-        void UsePreviousBarValue_Change()
-        {
-            if (miStrategyAUPBV.Checked == false)
-            {
+        void UsePreviousBarValue_Change() {
+            if (miStrategyAUPBV.Checked == false) {
                 // Confirmation Message
                 string sMessageText = Language.T("Are you sure you want to control \"Use previous bar value\" manually?");
                 DialogResult dialogResult = MessageBox.Show(sMessageText, Language.T("Use previous bar value"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                if (dialogResult == DialogResult.Yes)
-                {   // OK, we are sure
+                if (dialogResult == DialogResult.Yes) {   // OK, we are sure
                     Data.AutoUsePrvBarValue = false;
 
                     foreach (IndicatorSlot indicatorSlot in Data.Strategy.Slot)
@@ -428,13 +421,11 @@ namespace Forex_Strategy_Builder
                             if (checkParam.Caption == "Use previous bar value")
                                 checkParam.Enabled = true;
                 }
-                else
-                {   // Not just now
+                else {   // Not just now
                     miStrategyAUPBV.Checked = true;
                 }
             }
-            else
-            {
+            else {
                 Data.AutoUsePrvBarValue = true;
                 Data.Strategy.AdjustUsePreviousBarValue();
                 RepaintStrategyLayout();
@@ -447,11 +438,9 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Ask for saving the changed strategy
         /// </summary>
-        DialogResult WhetherSaveChangedStrategy()
-        {
+        DialogResult WhetherSaveChangedStrategy() {
             DialogResult dr = DialogResult.No;
-            if (Data.IsStrategyChanged)
-            {
+            if (Data.IsStrategyChanged) {
                 string sMessageText = Language.T("Do you want to save the current strategy?") + Environment.NewLine + Data.StrategyName;
                 dr = MessageBox.Show(sMessageText, Data.ProgramName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             }
@@ -462,32 +451,31 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// LoadInstrument
         /// </summary>
-        int LoadInstrument(bool useResource)
-        {
-            string      symbol;
+        int LoadInstrument(bool useResource) {
+            string symbol;
             DataPeriods dataPeriod;
 
             Cursor = Cursors.WaitCursor;
 
             //  Takes the instrument symbol and period
-            symbol    = tscbSymbol.Text;
+            symbol = tscbSymbol.Text;
             dataPeriod = (DataPeriods)Enum.GetValues(typeof(DataPeriods)).GetValue(tscbPeriod.SelectedIndex);
             Instrument_Properties instrProperties = Instruments.InstrumentList[symbol].Clone();
 
             //  Makes an instance of class Instrument
             Instrument instrument = new Instrument(instrProperties, (int)dataPeriod);
 
-            instrument.DataDir      = Data.OfflineDataDir;
-            instrument.FormatDate   = DateFormat.Unknown;
-            instrument.MaxBars      = Configs.MaxBars;
-            instrument.StartYear    = Configs.StartYear;
-            instrument.StartMonth   = Configs.StartMonth;
-            instrument.StartDay     = Configs.StartDay;
-            instrument.EndYear      = Configs.EndYear;
-            instrument.EndMonth     = Configs.EndMonth;
-            instrument.EndDay       = Configs.EndDay;
+            instrument.DataDir = Data.OfflineDataDir;
+            instrument.FormatDate = DateFormat.Unknown;
+            instrument.MaxBars = Configs.MaxBars;
+            instrument.StartYear = Configs.StartYear;
+            instrument.StartMonth = Configs.StartMonth;
+            instrument.StartDay = Configs.StartDay;
+            instrument.EndYear = Configs.EndYear;
+            instrument.EndMonth = Configs.EndMonth;
+            instrument.EndDay = Configs.EndDay;
             instrument.UseStartDate = Configs.UseStartDate;
-            instrument.UseEndDate   = Configs.UseEndDate;
+            instrument.UseEndDate = Configs.UseEndDate;
 
             // Loads the data
             int iLoadDataResult = 0;
@@ -497,45 +485,43 @@ namespace Forex_Strategy_Builder
             else
                 iLoadDataResult = instrument.LoadData();
 
-            if (instrument.Bars > 0 && iLoadDataResult == 0)
-            {
+            if (instrument.Bars > 0 && iLoadDataResult == 0) {
                 Data.InstrProperties = instrProperties.Clone();
 
-                Data.Bars   = instrument.Bars;
+                Data.Bars = instrument.Bars;
                 Data.Period = dataPeriod;
                 Data.Update = instrument.Update;
 
-                Data.Time   = new DateTime[Data.Bars];
-                Data.Open   = new double[Data.Bars];
-                Data.High   = new double[Data.Bars];
-                Data.Low    = new double[Data.Bars];
-                Data.Close  = new double[Data.Bars];
+                Data.Time = new DateTime[Data.Bars];
+                Data.Open = new double[Data.Bars];
+                Data.High = new double[Data.Bars];
+                Data.Low = new double[Data.Bars];
+                Data.Close = new double[Data.Bars];
                 Data.Volume = new int[Data.Bars];
 
-                for (int bar = 0; bar < Data.Bars; bar++)
-                {
-                    Data.Open[bar]   = instrument.Open(bar);
-                    Data.High[bar]   = instrument.High(bar);
-                    Data.Low[bar]    = instrument.Low(bar);
-                    Data.Close[bar]  = instrument.Close(bar);
-                    Data.Time[bar]   = instrument.Time(bar);
+                for (int bar = 0; bar < Data.Bars; bar++) {
+                    Data.Open[bar] = instrument.Open(bar);
+                    Data.High[bar] = instrument.High(bar);
+                    Data.Low[bar] = instrument.Low(bar);
+                    Data.Close[bar] = instrument.Close(bar);
+                    Data.Time[bar] = instrument.Time(bar);
                     Data.Volume[bar] = instrument.Volume(bar);
                 }
 
-                Data.MinPrice         = instrument.MinPrice;
-                Data.MaxPrice         = instrument.MaxPrice;
-                Data.DaysOff          = instrument.DaysOff;
-                Data.AverageGap       = instrument.AverageGap;
-                Data.MaxGap           = instrument.MaxGap;
-                Data.AverageHighLow   = instrument.AverageHighLow;
-                Data.MaxHighLow       = instrument.MaxHighLow;
+                Data.MinPrice = instrument.MinPrice;
+                Data.MaxPrice = instrument.MaxPrice;
+                Data.DaysOff = instrument.DaysOff;
+                Data.AverageGap = instrument.AverageGap;
+                Data.MaxGap = instrument.MaxGap;
+                Data.AverageHighLow = instrument.AverageHighLow;
+                Data.MaxHighLow = instrument.MaxHighLow;
                 Data.AverageCloseOpen = instrument.AverageCloseOpen;
-                Data.MaxCloseOpen     = instrument.MaxCloseOpen;
-                Data.DataCut          = instrument.Cut;
-                Data.IsIntrabarData   = false;
-                Data.IsTickData       = false;
-                Data.IsData           = true;
-                Data.IsResult         = false;
+                Data.MaxCloseOpen = instrument.MaxCloseOpen;
+                Data.DataCut = instrument.Cut;
+                Data.IsIntrabarData = false;
+                Data.IsTickData = false;
+                Data.IsData = true;
+                Data.IsResult = false;
 
                 // Configs.SetAccountExchangeRate();
 
@@ -546,15 +532,13 @@ namespace Forex_Strategy_Builder
                 infpnlAccountStatistics.Update(Backtester.AccountStatsParam, Backtester.AccountStatsValue,
                                                Backtester.AccountStatsFlags, Language.T("Account Statistics"));
             }
-            else if (iLoadDataResult == -1)
-            {
+            else if (iLoadDataResult == -1) {
                 MessageBox.Show(Language.T("Error in the data file!"), Language.T("Data file loading"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Cursor = Cursors.Default;
                 return 1;
             }
-            else
-            {
+            else {
                 MessageBox.Show(Language.T("There is no data for") + " " + symbol + " " + Data.DataPeriodToString(dataPeriod) + " " +
                                 Language.T("in folder") + " " + Data.OfflineDataDir + Environment.NewLine + Environment.NewLine +
                                 Language.T("Check the offline data directory path (Menu Market -> Data Directory)"),
@@ -571,8 +555,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Checks the loaded data
         /// </summary>
-        void CheckLoadedData()
-        {
+        void CheckLoadedData() {
             SetInstrumentDataStatusBar();
 
             if (!Configs.CheckData)
@@ -582,54 +565,45 @@ namespace Forex_Strategy_Builder
 
             // Check for defective data
             int maxConsecutiveBars = 0;
-            int maxConsecutiveBar  = 0;
-            int consecutiveBars    = 0;
-            int lastBar            = 0;
-            for (int iBar = 0; iBar < Data.Bars; iBar++)
-            {
-                if (Data.Open[iBar] == Data.Close[iBar])
-                {
-                    if (lastBar == iBar - 1 || lastBar == 0)
-                    {
+            int maxConsecutiveBar = 0;
+            int consecutiveBars = 0;
+            int lastBar = 0;
+            for (int iBar = 0; iBar < Data.Bars; iBar++) {
+                if (Data.Open[iBar] == Data.Close[iBar]) {
+                    if (lastBar == iBar - 1 || lastBar == 0) {
                         consecutiveBars++;
                         lastBar = iBar;
 
-                        if (consecutiveBars > maxConsecutiveBars)
-                        {
+                        if (consecutiveBars > maxConsecutiveBars) {
                             maxConsecutiveBars = consecutiveBars;
                             maxConsecutiveBar = iBar;
                         }
                     }
                 }
-                else
-                {
+                else {
                     consecutiveBars = 0;
                 }
             }
 
-            if (maxConsecutiveBars > 10)
-            {
+            if (maxConsecutiveBars > 10) {
                 errorMessage += Language.T("Defective till bar number:") + " " + (maxConsecutiveBar + 1) + " - " +
                                  Data.Time[maxConsecutiveBar].ToString() + Environment.NewLine +
                                  Language.T("You can try to cut it using \"Data Horizon\".") + Environment.NewLine +
                                  Language.T("You can try also \"Cut Off Bad Data\".");
             }
 
-            if (Data.Bars < 300)
-            {
+            if (Data.Bars < 300) {
                 errorMessage += Language.T("Contains less than 300 bars!") + Environment.NewLine +
                                  Language.T("Check your data file or the limits in \"Data Horizon\".");
             }
 
-            if (Data.DaysOff > 5 && Data.Period != DataPeriods.week)
-            {
+            if (Data.DaysOff > 5 && Data.Period != DataPeriods.week) {
                 errorMessage += Language.T("Maximum days off") + " " + Data.DaysOff + Environment.NewLine +
                                  Language.T("The data is probably incomplete!") + Environment.NewLine +
                                  Language.T("You can try also \"Cut Off Bad Data\".");
             }
 
-            if (errorMessage != "")
-            {
+            if (errorMessage != "") {
                 errorMessage = Language.T("Market") + " " + Data.Symbol + " " + Data.DataPeriodToString(Data.Period) + Environment.NewLine + errorMessage;
                 MessageBox.Show(errorMessage, Language.T("Data File Loading"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -640,8 +614,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Open a strategy file
         /// </summary>
-        void OpenFile()
-        {
+        void OpenFile() {
             DialogResult dialogResult = WhetherSaveChangedStrategy();
 
             if (dialogResult == DialogResult.Yes)
@@ -653,18 +626,15 @@ namespace Forex_Strategy_Builder
 
             opendlg.InitialDirectory = Data.StrategyDir;
             opendlg.Filter = Language.T("Strategy file") + " (*.xml)|*.xml";
-            opendlg.Title  = Language.T("Open Strategy");
+            opendlg.Title = Language.T("Open Strategy");
 
-            if (opendlg.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
+            if (opendlg.ShowDialog() == DialogResult.OK) {
+                try {
                     OpenStrategy(opendlg.FileName);
                     AfterStrategyOpening(true);
                     Calculate(false);
                 }
-                catch (Exception exc)
-                {
+                catch (Exception exc) {
                     MessageBox.Show(exc.Message, Text);
                     return;
                 }
@@ -676,8 +646,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// New Strategy
         /// </summary>
-        void NewStrategy()
-        {
+        void NewStrategy() {
             DialogResult dialogResult = WhetherSaveChangedStrategy();
 
             if (dialogResult == DialogResult.Yes)
@@ -687,8 +656,7 @@ namespace Forex_Strategy_Builder
 
             Data.StrategyDir = Path.Combine(Data.ProgramDir, Data.DefaultStrategyDir);
 
-            if (OpenStrategy(Path.Combine(Data.StrategyDir, "New.xml")) == 0)
-            {
+            if (OpenStrategy(Path.Combine(Data.StrategyDir, "New.xml")) == 0) {
                 AfterStrategyOpening(false);
                 Calculate(false);
             }
@@ -699,21 +667,17 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///Reloads the Custom Indicators.
         /// </summary>
-        void ReloadCustomIndicators()
-        {
+        void ReloadCustomIndicators() {
             // Check if the strategy contains custom indicators
             bool strategyHasCustomIndicator = false;
-            foreach (IndicatorSlot slot in Data.Strategy.Slot)
-            {   // Searching the strategy slots for a custom indicator
-                if (Indicator_Store.CustomIndicatorNames.Contains(slot.IndicatorName))
-                {
+            foreach (IndicatorSlot slot in Data.Strategy.Slot) {   // Searching the strategy slots for a custom indicator
+                if (Indicator_Store.CustomIndicatorNames.Contains(slot.IndicatorName)) {
                     strategyHasCustomIndicator = true;
                     break;
                 }
             }
 
-            if (strategyHasCustomIndicator)
-            {   // Save the current strategy
+            if (strategyHasCustomIndicator) {   // Save the current strategy
                 DialogResult dialogResult = WhetherSaveChangedStrategy();
 
                 if (dialogResult == DialogResult.Yes)
@@ -725,12 +689,10 @@ namespace Forex_Strategy_Builder
             // Reload all the custom indicators
             Custom_Indicators.LoadCustomIndicators();
 
-            if (strategyHasCustomIndicator)
-            {   // Load and calculate a new strategy
+            if (strategyHasCustomIndicator) {   // Load and calculate a new strategy
                 Data.StrategyDir = Path.Combine(Data.ProgramDir, Data.DefaultStrategyDir);
 
-                if (OpenStrategy(Path.Combine(Data.StrategyDir, "New.xml")) == 0)
-                {
+                if (OpenStrategy(Path.Combine(Data.StrategyDir, "New.xml")) == 0) {
                     AfterStrategyOpening(false);
                     Calculate(false);
                 }
@@ -743,22 +705,18 @@ namespace Forex_Strategy_Builder
         /// Reads the strategy from a file.
         /// </summary>
         /// <returns>0 - success.</returns>
-        int OpenStrategy(string strategyFilePath)
-        {
-            try
-            {
-                if (File.Exists(strategyFilePath) && Strategy.Load(strategyFilePath))
-                {   // Successfully opening
+        int OpenStrategy(string strategyFilePath) {
+            try {
+                if (File.Exists(strategyFilePath) && Strategy.Load(strategyFilePath)) {   // Successfully opening
                     Data.Strategy.StrategyName = Path.GetFileNameWithoutExtension(strategyFilePath);
-                    Data.StrategyDir  = Path.GetDirectoryName(strategyFilePath);
+                    Data.StrategyDir = Path.GetDirectoryName(strategyFilePath);
                     Data.StrategyName = Path.GetFileName(strategyFilePath);
                     if (Data.Strategy.OpenFilters > Configs.MAX_ENTRY_FILTERS)
                         Configs.MAX_ENTRY_FILTERS = Data.Strategy.OpenFilters;
                     if (Data.Strategy.CloseFilters > Configs.MAX_EXIT_FILTERS)
                         Configs.MAX_EXIT_FILTERS = Data.Strategy.CloseFilters;
                 }
-                else
-                {
+                else {
                     Strategy.GenerateNew();
                     Data.LoadedSavedStrategy = "";
                     this.Text = Data.ProgramName;
@@ -768,13 +726,12 @@ namespace Forex_Strategy_Builder
                 RebuildStrategyLayout();
 
                 this.Text = Data.Strategy.StrategyName + " - " + Data.ProgramName;
-                Data.IsStrategyChanged    = false;
+                Data.IsStrategyChanged = false;
                 Data.LoadedSavedStrategy = Data.StrategyPath;
 
                 Data.StackStrategy.Clear();
             }
-            catch
-            {
+            catch {
                 Strategy.GenerateNew();
                 string sMessageText = Language.T("The strategy could not be loaded correctly!");
                 MessageBox.Show(sMessageText, Language.T("Strategy Loading"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -790,24 +747,19 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Save the current strategy
         /// </summary>
-        int SaveStrategy()
-        {
-            if (Data.StrategyName == "New.xml")
-            {
+        int SaveStrategy() {
+            if (Data.StrategyName == "New.xml") {
                 SaveAsStrategy();
             }
-            else
-            {
-                try
-                {
+            else {
+                try {
                     Data.Strategy.Save(Data.StrategyPath);
                     this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + " - " + Data.ProgramName;
                     Data.IsStrategyChanged = false;
                     Data.LoadedSavedStrategy = Data.StrategyPath;
                     Data.SavedStrategies++;
                 }
-                catch (Exception exc)
-                {
+                catch (Exception exc) {
                     MessageBox.Show(exc.Message, Text);
                     return -1;
                 }
@@ -819,31 +771,27 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Save the current strategy
         /// </summary>
-        void SaveAsStrategy()
-        {
+        void SaveAsStrategy() {
             //Creates a dialog form SaveFileDialog
             SaveFileDialog savedlg = new SaveFileDialog();
 
             savedlg.InitialDirectory = Data.StrategyDir;
-            savedlg.FileName         = Path.GetFileName(Data.StrategyName);
-            savedlg.AddExtension     = true;
-            savedlg.Title            = Language.T("Save the Strategy As");
-            savedlg.Filter           = Language.T("Strategy file") + " (*.xml)|*.xml";
+            savedlg.FileName = Path.GetFileName(Data.StrategyName);
+            savedlg.AddExtension = true;
+            savedlg.Title = Language.T("Save the Strategy As");
+            savedlg.Filter = Language.T("Strategy file") + " (*.xml)|*.xml";
 
-            if (savedlg.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
+            if (savedlg.ShowDialog() == DialogResult.OK) {
+                try {
                     Data.StrategyName = Path.GetFileName(savedlg.FileName);
-                    Data.StrategyDir  = Path.GetDirectoryName(savedlg.FileName);
+                    Data.StrategyDir = Path.GetDirectoryName(savedlg.FileName);
                     Data.Strategy.Save(savedlg.FileName);
                     this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + " - " + Data.ProgramName;
                     Data.IsStrategyChanged = false;
                     Data.LoadedSavedStrategy = Data.StrategyPath;
                     Data.SavedStrategies++;
                 }
-                catch (Exception exc)
-                {
+                catch (Exception exc) {
                     MessageBox.Show(exc.Message, Text);
                     return;
                 }
@@ -856,30 +804,28 @@ namespace Forex_Strategy_Builder
         /// Calculates the strategy.
         /// </summary>
         /// <param name="recalcIndicators">true - to recalculate all the indicators.</param>
-        void Calculate(bool recalcIndicators)
-        {
+        void Calculate(bool recalcIndicators) {
             bool isUPBVChanged = Data.Strategy.AdjustUsePreviousBarValue();
 
             // Calculates the indicators by slots if it's necessary
             if (recalcIndicators)
-                foreach(IndicatorSlot indSlot in Data.Strategy.Slot)
-                {
-                    string    indicatorName = indSlot.IndicatorName;
-                    SlotTypes slotType      = indSlot.SlotType;
-                    Indicator indicator     = Indicator_Store.ConstructIndicator(indicatorName, slotType);
+                foreach (IndicatorSlot indSlot in Data.Strategy.Slot) {
+                    string indicatorName = indSlot.IndicatorName;
+                    SlotTypes slotType = indSlot.SlotType;
+                    Indicator indicator = Indicator_Store.ConstructIndicator(indicatorName, slotType);
 
                     indicator.IndParam = indSlot.IndParam;
 
                     indicator.Calculate(slotType);
 
-                    indSlot.IndicatorName  = indicator.IndicatorName;
-                    indSlot.IndParam       = indicator.IndParam;
-                    indSlot.Component      = indicator.Component;
+                    indSlot.IndicatorName = indicator.IndicatorName;
+                    indSlot.IndParam = indicator.IndParam;
+                    indSlot.Component = indicator.Component;
                     indSlot.SeparatedChart = indicator.SeparatedChart;
-                    indSlot.SpecValue      = indicator.SpecialValues;
-                    indSlot.MinValue       = indicator.SeparatedChartMinValue;
-                    indSlot.MaxValue       = indicator.SeparatedChartMaxValue;
-                    indSlot.IsDefined      = true;
+                    indSlot.SpecValue = indicator.SpecialValues;
+                    indSlot.MinValue = indicator.SeparatedChartMinValue;
+                    indSlot.MaxValue = indicator.SeparatedChartMaxValue;
+                    indSlot.IsDefined = true;
                 }
 
             // Searches the indicators' components to determine the Data.FirstBar
@@ -916,16 +862,14 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Sets the market according the strategy
         /// </summary>
-        void SetMarket(string symbol, DataPeriods dataPeriod)
-        {
+        void SetMarket(string symbol, DataPeriods dataPeriod) {
             Data.InstrProperties = Instruments.InstrumentList[symbol].Clone();
             Data.Period = dataPeriod;
 
             isDiscardSelectedIndexChange = true;
             tscbSymbol.SelectedIndex = tscbSymbol.Items.IndexOf(symbol);
 
-            switch (dataPeriod)
-            {
+            switch (dataPeriod) {
                 case DataPeriods.min1:
                     tscbPeriod.SelectedIndex = 0;
                     break;
@@ -962,23 +906,21 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Edit the Trading Charges
         /// </summary>
-        void EditTradingCharges()
-        {
+        void EditTradingCharges() {
             Trading_Charges tradingCharges = new Trading_Charges();
-            tradingCharges.Spread      = Data.InstrProperties.Spread;
-            tradingCharges.SwapLong    = Data.InstrProperties.SwapLong;
-            tradingCharges.SwapShort   = Data.InstrProperties.SwapShort;
-            tradingCharges.Commission  = Data.InstrProperties.Commission;
-            tradingCharges.Slippage    = Data.InstrProperties.Slippage;
+            tradingCharges.Spread = Data.InstrProperties.Spread;
+            tradingCharges.SwapLong = Data.InstrProperties.SwapLong;
+            tradingCharges.SwapShort = Data.InstrProperties.SwapShort;
+            tradingCharges.Commission = Data.InstrProperties.Commission;
+            tradingCharges.Slippage = Data.InstrProperties.Slippage;
             tradingCharges.ShowDialog();
 
-            if (tradingCharges.DialogResult == DialogResult.OK)
-            {
-                Data.InstrProperties.Spread     = tradingCharges.Spread;
-                Data.InstrProperties.SwapLong   = tradingCharges.SwapLong;
-                Data.InstrProperties.SwapShort  = tradingCharges.SwapShort;
+            if (tradingCharges.DialogResult == DialogResult.OK) {
+                Data.InstrProperties.Spread = tradingCharges.Spread;
+                Data.InstrProperties.SwapLong = tradingCharges.SwapLong;
+                Data.InstrProperties.SwapShort = tradingCharges.SwapShort;
                 Data.InstrProperties.Commission = tradingCharges.Commission;
-                Data.InstrProperties.Slippage   = tradingCharges.Slippage;
+                Data.InstrProperties.Slippage = tradingCharges.Slippage;
 
                 Instruments.InstrumentList[Data.InstrProperties.Symbol] = Data.InstrProperties.Clone();
 
@@ -996,14 +938,11 @@ namespace Forex_Strategy_Builder
         /// Check the needed market conditions
         /// </summary>
         /// <param name="isMessage">To show the message or not</param>
-        void AfterStrategyOpening(bool isMessage)
-        {
-            if (Data.Strategy.Symbol != Data.Symbol || Data.Strategy.DataPeriod != Data.Period)
-            {
+        void AfterStrategyOpening(bool isMessage) {
+            if (Data.Strategy.Symbol != Data.Symbol || Data.Strategy.DataPeriod != Data.Period) {
                 bool toReload = true;
 
-                if (isMessage)
-                {
+                if (isMessage) {
                     DialogResult result;
 
                     result = MessageBox.Show(
@@ -1017,10 +956,8 @@ namespace Forex_Strategy_Builder
                     toReload = (result == DialogResult.Yes);
                 }
 
-                if (toReload)
-                {
-                    if (!Instruments.InstrumentList.ContainsKey(Data.Strategy.Symbol))
-                    {
+                if (toReload) {
+                    if (!Instruments.InstrumentList.ContainsKey(Data.Strategy.Symbol)) {
                         MessageBox.Show(
                             Language.T("There is no information for this market!") +
                             Environment.NewLine + Environment.NewLine +
@@ -1030,24 +967,21 @@ namespace Forex_Strategy_Builder
                         return;
                     }
 
-                    string      symbol     = Data.Symbol;
+                    string symbol = Data.Symbol;
                     DataPeriods dataPeriod = Data.Period;
 
                     SetMarket(Data.Strategy.Symbol, Data.Strategy.DataPeriod);
 
-                    if (LoadInstrument(false) == 0)
-                    {
+                    if (LoadInstrument(false) == 0) {
                         Calculate(true);
                         PrepareScannerCompactMode();
                     }
-                    else
-                    {
+                    else {
                         SetMarket(symbol, dataPeriod);
                     }
                 }
             }
-            else if (!Data.IsIntrabarData)
-            {
+            else if (!Data.IsIntrabarData) {
                 PrepareScannerCompactMode();
             }
 
@@ -1057,10 +991,8 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Load intrabar data by using scanner.
         /// </summary>
-        void PrepareScannerCompactMode()
-        {
-            if (Configs.Autoscan && (Data.Period != DataPeriods.min1 || Configs.UseTickData))
-            {
+        void PrepareScannerCompactMode() {
+            if (Configs.Autoscan && (Data.Period != DataPeriods.min1 || Configs.UseTickData)) {
                 tscbSymbol.Enabled = false;
                 tscbPeriod.Enabled = false;
 
@@ -1074,8 +1006,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Starts scanner and loads intrabar data.
         /// </summary>
-        void LoadIntrabarData(object sender, DoWorkEventArgs e)
-        {
+        void LoadIntrabarData(object sender, DoWorkEventArgs e) {
 
             Scanner scanner = new Scanner();
             scanner.CompactMode = true;
@@ -1087,8 +1018,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// The intrabar data is loaded. Refresh the program.
         /// </summary>
-        void IntrabarDataLoaded(object sender, RunWorkerCompletedEventArgs e)
-        {
+        void IntrabarDataLoaded(object sender, RunWorkerCompletedEventArgs e) {
             Calculate(true);
 
             tscbSymbol.Enabled = true;
@@ -1100,8 +1030,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Generate BBCode for the forum
         /// </summary>
-        void PublishStrategy()
-        {
+        void PublishStrategy() {
             Strategy_Publish publisher = new Strategy_Publish();
             publisher.Show();
         }
@@ -1109,23 +1038,21 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Shows the Account Settings dialog.
         /// </summary>
-        void ShowAccountSettings()
-        {
+        void ShowAccountSettings() {
             Account_Settings accountSettings = new Account_Settings();
 
             accountSettings.AccountCurrency = Configs.AccountCurrency;
-            accountSettings.InitialAccount  = Configs.InitialAccount;
-            accountSettings.Leverage        = Configs.Leverage;
-            accountSettings.RateToUSD       = Data.InstrProperties.RateToUSD;
-            accountSettings.RateToEUR       = Data.InstrProperties.RateToEUR;
+            accountSettings.InitialAccount = Configs.InitialAccount;
+            accountSettings.Leverage = Configs.Leverage;
+            accountSettings.RateToUSD = Data.InstrProperties.RateToUSD;
+            accountSettings.RateToEUR = Data.InstrProperties.RateToEUR;
 
             accountSettings.SetParams();
 
-            if (accountSettings.ShowDialog() == DialogResult.OK)
-            {
+            if (accountSettings.ShowDialog() == DialogResult.OK) {
                 Configs.AccountCurrency = accountSettings.AccountCurrency;
-                Configs.InitialAccount  = accountSettings.InitialAccount;
-                Configs.Leverage        = accountSettings.Leverage;
+                Configs.InitialAccount = accountSettings.InitialAccount;
+                Configs.Leverage = accountSettings.Leverage;
 
                 Data.InstrProperties.RateToUSD = accountSettings.RateToUSD;
                 Data.InstrProperties.RateToEUR = accountSettings.RateToEUR;
@@ -1141,8 +1068,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///  Shows the scanner
         /// </summary>
-        void ShowScanner()
-        {
+        void ShowScanner() {
             Scanner scanner = new Scanner();
             scanner.ShowDialog();
 
@@ -1166,8 +1092,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Perform intrabar scanning
         /// </summary>
-        void Scan()
-        {
+        void Scan() {
             if (!Data.IsIntrabarData)
                 ShowScanner();
             else
@@ -1191,8 +1116,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///  Starts the generator
         /// </summary>
-        void ShowGenerator()
-        {
+        void ShowGenerator() {
             // Put the Strategy into the Undo Stack
             Data.StackStrategy.Push(Data.Strategy.Clone());
             Data.IsStrategyReady = false;
@@ -1203,20 +1127,17 @@ namespace Forex_Strategy_Builder
             generator.SetParrentForm = this;
             generator.ShowDialog();
 
-            if (generator.DialogResult == DialogResult.OK)
-            {   // We accept the generated strategy
+            if (generator.DialogResult == DialogResult.OK) {   // We accept the generated strategy
                 Data.StrategyName = Data.Strategy.StrategyName + ".xml";
                 Text = Data.Strategy.StrategyName + "* - " + Data.ProgramName;
 
-                if (generator.IsStrategyModified)
-                {
+                if (generator.IsStrategyModified) {
                     Data.Strategy.Description = (sOrginalDescription != string.Empty ?
                         sOrginalDescription + Environment.NewLine + Environment.NewLine +
                         "-----------" + Environment.NewLine + generator.GeneratedDescription :
                         generator.GeneratedDescription);
                 }
-                else
-                {
+                else {
                     Data.SetStrategyIndicators();
                     Data.Strategy.Description = generator.GeneratedDescription;
                 }
@@ -1224,8 +1145,7 @@ namespace Forex_Strategy_Builder
                 RebuildStrategyLayout();
                 Calculate(true);
             }
-            else
-            {   // When we cancel the Generating, we return the original strategy.
+            else {   // When we cancel the Generating, we return the original strategy.
                 UndoStrategy();
             }
 
@@ -1238,8 +1158,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///  Starts the generator
         /// </summary>
-        void ShowOverview()
-        {
+        void ShowOverview() {
             Browser so = new Browser(Language.T("Strategy Overview"), Data.Strategy.GenerateHTMLOverview());
             so.Show();
 
@@ -1249,8 +1168,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Call the Optimizer
         /// </summary>
-        void ShowOptimizer()
-        {
+        void ShowOptimizer() {
             // Put the Strategy into the Undo Stack
             Data.StackStrategy.Push(Data.Strategy.Clone());
             Data.IsStrategyReady = false;
@@ -1259,15 +1177,13 @@ namespace Forex_Strategy_Builder
             optimizer.SetParrentForm = this;
             optimizer.ShowDialog();
 
-            if (optimizer.DialogResult == DialogResult.OK)
-            {   // We accept the optimized strategy
+            if (optimizer.DialogResult == DialogResult.OK) {   // We accept the optimized strategy
                 this.Text = Path.GetFileNameWithoutExtension(Data.StrategyName) + "* - " + Data.ProgramName;
                 Data.IsStrategyChanged = true;
                 RepaintStrategyLayout();
                 Calculate(true);
             }
-            else
-            {   // If we cancel the optimizing, we return the original strategy.
+            else {   // If we cancel the optimizing, we return the original strategy.
                 UndoStrategy();
             }
 
@@ -1280,8 +1196,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///  Show the method Comparator
         /// </summary>
-        int ShowComparator()
-        {
+        int ShowComparator() {
             // Save the original method to return it later
             InterpolationMethod interpMethodOriginal = Backtester.InterpolationMethod;
 
@@ -1298,8 +1213,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///  Shows the Bar Explorer tool.
         /// </summary>
-        void ShowBarExplorer()
-        {
+        void ShowBarExplorer() {
             Bar_Explorer barExplorer = new Bar_Explorer(Data.FirstBar);
             barExplorer.ShowDialog();
 
@@ -1309,28 +1223,25 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///  Sets the data starting parameters.
         /// </summary>
-        void DataHorizon()
-        {
+        void DataHorizon() {
             DateTime dtStart = new DateTime(Configs.StartYear, Configs.StartMonth, Configs.StartDay);
-            DateTime dtEnd   = new DateTime(Configs.EndYear,   Configs.EndMonth,   Configs.EndDay);
+            DateTime dtEnd = new DateTime(Configs.EndYear, Configs.EndMonth, Configs.EndDay);
 
             Data_Horizon horizon = new Data_Horizon(Configs.MaxBars, dtStart, dtEnd, Configs.UseStartDate, Configs.UseEndDate);
             horizon.ShowDialog();
 
-            if (horizon.DialogResult == DialogResult.OK)
-            {   // Applying the new settings
-                Configs.MaxBars      = horizon.MaxBars;
-                Configs.StartYear    = horizon.StartDate.Year;
-                Configs.StartMonth   = horizon.StartDate.Month;
-                Configs.StartDay     = horizon.StartDate.Day;
-                Configs.EndYear      = horizon.EndDate.Year;
-                Configs.EndMonth     = horizon.EndDate.Month;
-                Configs.EndDay       = horizon.EndDate.Day;
+            if (horizon.DialogResult == DialogResult.OK) {   // Applying the new settings
+                Configs.MaxBars = horizon.MaxBars;
+                Configs.StartYear = horizon.StartDate.Year;
+                Configs.StartMonth = horizon.StartDate.Month;
+                Configs.StartDay = horizon.StartDate.Day;
+                Configs.EndYear = horizon.EndDate.Year;
+                Configs.EndMonth = horizon.EndDate.Month;
+                Configs.EndDay = horizon.EndDate.Day;
                 Configs.UseStartDate = horizon.UseStartDate;
-                Configs.UseEndDate   = horizon.UseEndDate;
+                Configs.UseEndDate = horizon.UseEndDate;
 
-                if (LoadInstrument(false) == 0)
-                {
+                if (LoadInstrument(false) == 0) {
                     Calculate(true);
                     PrepareScannerCompactMode();
                 }
@@ -1342,13 +1253,11 @@ namespace Forex_Strategy_Builder
         /// <summary>
         ///  Shows the Instrument Editor dialog.
         /// </summary>
-        void ShowInstrumentEditor()
-        {
+        void ShowInstrumentEditor() {
             Instrument_Editor instrEditor = new Instrument_Editor();
             instrEditor.ShowDialog();
 
-            if (instrEditor.NeedReset)
-            {
+            if (instrEditor.NeedReset) {
                 isDiscardSelectedIndexChange = true;
 
                 tscbSymbol.Items.Clear();
@@ -1368,12 +1277,10 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Loads a color scheme.
         /// </summary>
-        void LoadColorScheme()
-        {
+        void LoadColorScheme() {
             string colorFile = Path.Combine(Data.ColorDir, Configs.ColorScheme + ".xml");
 
-            if (File.Exists(colorFile))
-            {
+            if (File.Exists(colorFile)) {
                 LayoutColors.LoadColorScheme(colorFile);
 
                 pnlWorkspace.BackColor = LayoutColors.ColorFormBack;
@@ -1396,8 +1303,7 @@ namespace Forex_Strategy_Builder
         /// <summary>
         /// Sets the Status Bar Data Label
         /// </summary>
-        void SetInstrumentDataStatusBar()
-        {
+        void SetInstrumentDataStatusBar() {
             string swapUnit = "p";
             if (Data.InstrProperties.SwapType == Commission_Type.money)
                 swapUnit = "m";
@@ -1411,16 +1317,16 @@ namespace Forex_Strategy_Builder
                 commUnit = "%";
 
             ToolStripStatusLabelInstrument =
-                Data.Symbol    + " "  +
+                Data.Symbol + " " +
                 Data.PeriodString + " (" +
-                Data.InstrProperties.Spread     + ", " +
-                Data.InstrProperties.SwapLong.ToString("F2")   + swapUnit + ", " +
-                Data.InstrProperties.SwapShort.ToString("F2")  + swapUnit + ", " +
+                Data.InstrProperties.Spread + ", " +
+                Data.InstrProperties.SwapLong.ToString("F2") + swapUnit + ", " +
+                Data.InstrProperties.SwapShort.ToString("F2") + swapUnit + ", " +
                 Data.InstrProperties.Commission.ToString("F2") + commUnit + ", " +
                 Data.InstrProperties.Slippage + ")" +
                 (Data.DataCut ? " - " + Language.T("Cut") : "") +
-                (Configs.FillInDataGaps ?  " - " + Language.T("No Gaps") : "") +
-                (Configs.CheckData  ? "" : " - " + Language.T("Unchecked"));
+                (Configs.FillInDataGaps ? " - " + Language.T("No Gaps") : "") +
+                (Configs.CheckData ? "" : " - " + Language.T("Unchecked"));
 
             return;
         }
