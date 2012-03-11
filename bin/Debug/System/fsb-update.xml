@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <update>
   <versions>
-    <release>2600000</release>
-    <beta>0</beta>
+    <release>2640000</release>
+    <beta>2650000</beta>
   </versions>
   <brokers>
     <broker>
-      <title>Vantage FX</title>
-      <link>http://www.vantagefx.com</link>
+      <title>Accent Forex</title>
+      <link>http://accentforex.com/en/?ref=10194</link>
     </broker>
     <broker>
-      <title>FastBrokers</title>
-      <link>http://www.fastbrokers.com/index.php?bfd1bd24</link>
+      <title>Vantage FX</title>
+      <link>http://www.vantagefx.com</link>
     </broker>
   </brokers>
 </update>

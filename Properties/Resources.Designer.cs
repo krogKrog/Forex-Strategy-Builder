@@ -542,6 +542,20 @@ namespace Forex_Strategy_Builder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap histogram_chart {
+            get {
+                object obj = ResourceManager.GetObject("histogram_chart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap histogram_chart2 {
+            get {
+                object obj = ResourceManager.GetObject("histogram_chart2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon Icon {
             get {
                 object obj = ResourceManager.GetObject("Icon", resourceCulture);
@@ -549,9 +563,23 @@ namespace Forex_Strategy_Builder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ind_chart {
+            get {
+                object obj = ResourceManager.GetObject("ind_chart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap info {
             get {
                 object obj = ResourceManager.GetObject("info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap info_panel {
+            get {
+                object obj = ResourceManager.GetObject("info_panel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -903,6 +931,13 @@ namespace Forex_Strategy_Builder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap pushpin_detach {
+            get {
+                object obj = ResourceManager.GetObject("pushpin_detach", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap question {
             get {
                 object obj = ResourceManager.GetObject("question", resourceCulture);
@@ -920,6 +955,13 @@ namespace Forex_Strategy_Builder.Properties {
         internal static System.Drawing.Bitmap recalculate {
             get {
                 object obj = ResourceManager.GetObject("recalculate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1031,12 +1073,18 @@ namespace Forex_Strategy_Builder.Properties {
         ///    /// &lt;summary&gt;
         ///    /// Strategy to Indicator
         ///    /// &lt;/summary&gt;
-        ///    public class Strategy_To_Indicator : Indicator
-        /// [rest of string was truncated]&quot;;.
+        ///    public class Strategy_To_Indicator : Indicator        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StrategyToIndicator {
             get {
                 return ResourceManager.GetString("StrategyToIndicator", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap toggle {
+            get {
+                object obj = ResourceManager.GetObject("toggle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

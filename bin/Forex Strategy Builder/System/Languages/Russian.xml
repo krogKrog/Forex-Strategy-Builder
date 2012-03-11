@@ -1453,6 +1453,52 @@
     <main>Swap Short</main>
     <alt>Своп короткой</alt>
   </str>
+  <!-- Trade Distribution Chart -->
+  <str>
+    <main>Trade Distribution Chart</main>
+    <alt>Диаграмма распределения торговли</alt>
+  </str>
+  <str>
+    <main>Count of Trades</main>
+    <alt>Количество сделок</alt>
+  </str>
+  <str>
+    <main>Accumulated Amount</main>
+    <alt>Накопленная сумма</alt>
+  </str>
+  <str>
+    <main>Toggle Chart Representation</main>
+    <alt>Переключение представления диаграмм</alt>
+  </str>
+  <str>
+    <main>Export Data to CSV File</main>
+    <alt>Экспорт данных в CSV-файл</alt>
+  </str>
+  <str>
+    <main>Copy Data to Clipboard</main>
+    <alt>Копирование данных в буфер обмена</alt>
+  </str>
+  <str>
+    <main>No trades counted</main>
+    <alt>Нет торгов</alt>
+  </str>
+  <str>
+    <main>Result</main>
+    <alt>Результат</alt>
+  </str>
+  <str>
+    <main>Count</main>
+    <alt>Счет</alt>
+  </str>
+  <str>
+    <main>Total</main>
+    <alt>Тотальный</alt>
+  </str>
+  <!-- Market Panel -->
+  <str>
+    <main>Full Indicator Chart</main>
+    <alt>Полная диаграмма индикаторъй</alt>
+  </str>
   <!-- Strategy Panel -->
   <str>
     <main>Show the strategy description.</main>
@@ -1615,6 +1661,14 @@
     <main>Right click to detach chart.</main>
     <alt>Кликнуть правой клавишей мыши для изъятия диаграммы</alt>
   </str>
+  <str>
+    <main>Full Balance Chart</main>
+    <alt>Полная диаграмма баланса</alt>
+  </str>
+  <str>
+    <main>Detach Balance Chart</main>
+    <alt>Снимите график баланса</alt>
+  </str>
   <!-- Journals -->
   <str>
     <main>Click to select a bar.</main>
@@ -1629,12 +1683,8 @@
     <alt>Клик дважды для просмотра Бар Експлорера.</alt>
   </str>
   <str>
-    <main>Hide the journal tables.</main>
-    <alt>Скрыть таблицы журнала.</alt>
-  </str>
-  <str>
-    <main>Toggle the journal type.</main>
-    <alt>Переключить вид журнала.</alt>
+    <main>Close Journal</main>
+    <alt>Закрыть журнал</alt>
   </str>
   <str>
     <main>Position</main>
@@ -2490,6 +2540,10 @@
     <alt>Оптимизация</alt>
   </str>
   <str>
+    <main>Initial</main>
+    <alt>Исходный</alt>
+  </str>
+  <str>
     <main>Value</main>
     <alt>Стоимость</alt>
   </str>
@@ -2538,16 +2592,12 @@
     <alt>Включить случайный выбор параметров.</alt>
   </str>
   <str>
-    <main>Set Min / Max ± 5 steps.</main>
-    <alt>Задать Min / Max значение  ± 5 шагов.</alt>
+    <main>Set Min / Max ± # steps.</main>
+    <alt>Установка Min / Max ± # шагов.</alt>
   </str>
   <str>
-    <main>Set Min / Max ± 10 steps.</main>
-    <alt>Задать Min / Max значение  ± 10 шагов.</alt>
-  </str>
-  <str>
-    <main>Set Min / Max ± 15 steps.</main>
-    <alt>Задать Min / Max значение  ± 15 шагов.</alt>
+    <main>Reset strategy parameters.</main>
+    <alt>Сброс параметров стратегии.</alt>
   </str>
   <str>
     <main>Show indicator parameters.</main>

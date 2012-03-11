@@ -9,11 +9,11 @@
   <SIGMA_MODE_SEPARATED_CHART>5</SIGMA_MODE_SEPARATED_CHART>
   <installed>True</installed>
   <showStartingTip>True</showStartingTip>
-  <currentTipNumber>-1</currentTipNumber>
+  <currentTipNumber>0</currentTipNumber>
   <language>English</language>
-  <showJournal>True</showJournal>
+  <showJournal>False</showJournal>
   <gradientView>True</gradientView>
-  <journalByBars>False</journalByBars>
+  <journalByBars>True</journalByBars>
   <journalShowTransfers>False</journalShowTransfers>
   <autoscan>False</autoscan>
   <tradeUntilMarginCall>True</tradeUntilMarginCall>
@@ -23,8 +23,7 @@
   </dataDirectory>
   <colorScheme>Light Blue</colorScheme>
   <rememberLastStrategy>True</rememberLastStrategy>
-  <lastStrategy>
-  </lastStrategy>
+  <lastStrategy>New.xml</lastStrategy>
   <checkForUpdates>True</checkForUpdates>
   <checkForNewBeta>False</checkForNewBeta>
   <checkData>True</checkData>
@@ -99,4 +98,8 @@
     <ambiguousMark>True</ambiguousMark>
     <trueCharts>False</trueCharts>
   </balanceChart>
+  <sendUsageStats>True</sendUsageStats>
+  <mainScreenWidth>790</mainScreenWidth>
+  <mainScreenHeight>590</mainScreenHeight>
+  <showStatusBar>True</showStatusBar>
 </config>
