@@ -111,7 +111,9 @@ namespace Forex_Strategy_Builder
                         transaction == Transaction.Reduce ||
                         transaction == Transaction.Reverse)
                     {
-                        _tradeResults[ctr] = (int)StatsBuffer.PosProfitLoss(bar, pos);
+                        _tradeResults[ctr] = (Configs.AccountInMoney) ?
+                            (int)StatsBuffer.PosMoneyProfitLoss(bar, pos) :
+                            (int)StatsBuffer.PosProfitLoss(bar, pos);
                         ctr++;
                     }
                 }
